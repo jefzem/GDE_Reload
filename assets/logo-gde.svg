@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 340 80" width="340" height="80" role="img" aria-label="Global Data Excellence">
+  <!-- ── Logo mark : dark navy circle with gde + teal arcs ── -->
+  <circle cx="40" cy="40" r="37" fill="#0B1D3A"/>
+
+  <!-- Teal arc elements (data viz motif) -->
+  <circle cx="40" cy="40" r="27" fill="none" stroke="#1EB8A8" stroke-width="2.5" stroke-dasharray="38 31" stroke-dashoffset="0" opacity="0.7"/>
+  <circle cx="40" cy="40" r="20" fill="none" stroke="#1EB8A8" stroke-width="2" stroke-dasharray="24 39" stroke-dashoffset="15" opacity="0.4"/>
+
+  <!-- "gde" text in white -->
+  <text x="40" y="46" text-anchor="middle" fill="white" font-family="'Inter', Helvetica, Arial, sans-serif" font-size="18" font-weight="800" letter-spacing="-0.5">gde</text>
+
+  <!-- ── Logo wordmark ── -->
+  <!-- "Global" — dark navy -->
+  <text x="88" y="28" fill="#0B1D3A" font-family="'Inter', Helvetica, Arial, sans-serif" font-size="22" font-weight="800" letter-spacing="-0.3">Global</text>
+
+  <!-- "Data" — teal accent -->
+  <text x="88" y="53" fill="#1EB8A8" font-family="'Inter', Helvetica, Arial, sans-serif" font-size="22" font-weight="800" letter-spacing="-0.3">Data </text>
+
+  <!-- "Excellence" — dark navy (same line as Data) -->
+  <text x="144" y="53" fill="#0B1D3A" font-family="'Inter', Helvetica, Arial, sans-serif" font-size="22" font-weight="800" letter-spacing="-0.3">Excellence</text>
+
+  <!-- Tagline -->
+  <text x="88" y="70" fill="#6B7B96" font-family="'Inter', Helvetica, Arial, sans-serif" font-size="9.5" font-weight="400" letter-spacing="0">Create sustainable businesses with a true AI you can talk with</text>
+</svg>

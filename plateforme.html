@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Plateforme DEMS® — Semandata</title>
+  <title>Plateforme DEMS® — GDE</title>
   <meta name="description" content="DEMS® — la plateforme de gouvernance sémantique non-statistique. SMM®, BER®, KVI®, DeCRIPT®, SAP Native. API REST agentique native.">
   <style>
 /* ============================================================
@@ -82,16 +82,10 @@ img { max-width: 100%; display: block; }
   display: flex; align-items: center; justify-content: space-between; gap: 32px;
 }
 .nav-logo {
-  display: flex; align-items: center; gap: 10px;
-  font-size: 20px; font-weight: 800; color: var(--c-heading);
-  letter-spacing: -0.5px; flex-shrink: 0;
+  display: flex; align-items: center;
+  flex-shrink: 0; line-height: 0;
 }
-.nav-logo .logo-mark {
-  width: 36px; height: 36px; border-radius: 10px;
-  background: var(--c-blue700);
-  display: flex; align-items: center; justify-content: center;
-  color: white; font-weight: 900; font-size: 16px; letter-spacing: -1px;
-}
+/* logo-mark replaced by SVG image */
 .nav-links {
   display: flex; align-items: center; gap: 4px;
   list-style: none; flex: 1; justify-content: center;
@@ -104,31 +98,40 @@ img { max-width: 100%; display: block; }
 }
 .nav-links a:hover { background: var(--c-grey100); color: var(--c-heading); }
 .nav-links a.active { background: var(--c-blue50); color: var(--c-blue700); font-weight: 600; }
-/* ── Dropdown Ressources ── */
+/* ── Méga-menu Ressources ── */
 .nav-dropdown { position: relative; }
-.nav-dropdown > a::after {
-  content: ' ▾'; font-size: 10px; opacity: 0.6;
-}
-.nav-dropdown-menu {
+.nav-dropdown > a::after { content: ' ▾'; font-size: 10px; opacity: 0.6; }
+.nav-mega-menu {
   display: none;
   position: absolute; top: calc(100% + 8px); left: 50%;
   transform: translateX(-50%);
   background: white; border: 1px solid var(--c-grey200);
   border-radius: var(--r-lg); box-shadow: var(--shadow-lg);
-  min-width: 210px; padding: 8px; z-index: 200;
-  white-space: nowrap;
+  width: 660px; padding: 20px; z-index: 200;
+  grid-template-columns: 1fr 1fr 1fr; gap: 0;
 }
-.nav-dropdown:hover .nav-dropdown-menu { display: block; }
-.nav-dropdown-menu a {
-  display: block; padding: 10px 14px; border-radius: var(--r-md);
-  font-size: 14px; font-weight: 500; color: var(--c-paragraph);
-  transition: all 0.15s ease;
+.nav-mega-menu.open { display: grid; }
+.nav-dropdown:hover .nav-mega-menu { display: grid; }
+.mega-col { padding: 0 16px; }
+.mega-col + .mega-col { border-left: 1px solid var(--c-grey200); }
+.mega-col-title {
+  font-size: 11px; font-weight: 800; text-transform: uppercase;
+  letter-spacing: 1.2px; color: var(--c-blue700);
+  padding: 0 0 10px; margin-bottom: 4px;
+  border-bottom: 2px solid var(--c-blue100);
 }
-.nav-dropdown-menu a:hover { background: var(--c-blue50); color: var(--c-blue700); }
-.nav-dropdown-menu .dropdown-label {
-  font-size: 11px; font-weight: 700; text-transform: uppercase;
-  letter-spacing: 1px; color: var(--c-caption); padding: 6px 14px 4px;
+.mega-col a {
+  display: flex; align-items: flex-start; gap: 8px;
+  padding: 9px 8px; border-radius: var(--r-md);
+  font-size: 13px; font-weight: 500; color: var(--c-paragraph);
+  transition: all 0.15s ease; line-height: 1.35; text-decoration: none;
 }
+.mega-col a:hover { background: var(--c-blue50); color: var(--c-blue700); }
+.mega-col a .mi { font-size: 15px; flex-shrink: 0; margin-top: 1px; }
+.mega-col a .ml { display: flex; flex-direction: column; }
+.mega-col a .ml strong { font-weight: 700; color: var(--c-heading); font-size: 13px; }
+.mega-col a .ml span { font-size: 11px; color: var(--c-caption); margin-top: 1px; }
+@media (max-width: 768px) { .nav-mega-menu { display: none !important; } }
 
 .nav-cta { display: flex; align-items: center; gap: 12px; flex-shrink: 0; }
 
@@ -652,20 +655,67 @@ img { max-width: 100%; display: block; }
 <nav class="nav">
   <div class="nav-inner">
     <a href="index.html" class="nav-logo">
-      <div class="logo-mark">Sm</div>
-      Semandata
+      <img src="assets/logo-gde.svg" alt="GDE — Global Data Excellence" style="height:42px;width:auto;">
     </a>
     <ul class="nav-links">
       <li><a href="plateforme.html" class="active">Plateforme</a></li>
       <li><a href="solutions.html">Solutions</a></li>
-      <li class="nav-dropdown">
-      <a href="ressources.html">Ressources</a>
-      <div class="nav-dropdown-menu">
-        <div class="dropdown-label">Ressources</div>
-        <a href="ressources.html#temoignages">Témoignages clients</a>
-        <a href="ressources.html#insights">Références &amp; Insights</a>
-        <a href="ressources.html#guides">Guides pratiques</a>
-        <a href="ressources.html#articles">Articles</a>
+      <li class="nav-dropdown" id="nav-ressources">
+      <a href="ressources.html" onclick="toggleMega(event)">Ressources</a>
+      <div class="nav-mega-menu">
+        <div class="mega-col">
+          <div class="mega-col-title">Témoignages</div>
+          <a href="ressources.html#temoignage-auto">
+            <span class="mi">🚗</span>
+            <span class="ml"><strong>Automobile Tier-1</strong><span>3 Mds€ identifiés en 2h de POV</span></span>
+          </a>
+          <a href="ressources.html#temoignage-agro">
+            <span class="mi">🌾</span>
+            <span class="ml"><strong>Agro-alimentaire</strong><span>100% traçabilité supply chain — 8 sem.</span></span>
+          </a>
+          <a href="ressources.html#temoignage-industrie">
+            <span class="mi">🏗️</span>
+            <span class="ml"><strong>Industrie Matériaux</strong><span>127M€ économisés — 47 usines</span></span>
+          </a>
+        </div>
+        <div class="mega-col">
+          <div class="mega-col-title">Insights</div>
+          <a href="ressources.html#insight-mit">
+            <span class="mi">🎓</span>
+            <span class="ml"><strong>MIT CISR — Mai 2026</strong><span>Semantic Layer : la preuve empirique</span></span>
+          </a>
+          <a href="ressources.html#insight-gartner">
+            <span class="mi">📊</span>
+            <span class="ml"><strong>Gartner Research</strong><span>40% projets agentiques abandonnés d'ici 2027</span></span>
+          </a>
+          <a href="ressources.html#insight-reglementaire">
+            <span class="mi">⚖️</span>
+            <span class="ml"><strong>Paysage réglementaire</strong><span>RGPD · AI Act · DORA · NIS2 · CSRD</span></span>
+          </a>
+          <a href="ressources.html#insight-incidents">
+            <span class="mi">🔴</span>
+            <span class="ml"><strong>Incidents de référence</strong><span>Knight Capital, VW, TikTok, Meta…</span></span>
+          </a>
+        </div>
+        <div class="mega-col">
+          <div class="mega-col-title">Guides</div>
+          <a href="ressources.html#guide-pov">
+            <span class="mi">🔍</span>
+            <span class="ml"><strong>Guide POV</strong><span>Cadrer votre Proof of Value en 4 semaines</span></span>
+          </a>
+          <a href="ressources.html#guide-ai-act">
+            <span class="mi">📋</span>
+            <span class="ml"><strong>Guide Conformité AI Act</strong><span>Ce qu'il faut avant 2027</span></span>
+          </a>
+          <a href="ressources.html#guide-deploiement">
+            <span class="mi">☁️</span>
+            <span class="ml"><strong>Guide Déploiement Souverain</strong><span>DEMS® dans votre cloud ou on-premise</span></span>
+          </a>
+          <a href="ressources.html#guide-kvi">
+            <span class="mi">💶</span>
+            <span class="ml"><strong>Guide KVI®</strong><span>Valoriser votre risque en euros</span></span>
+          </a>
+        </div>
       </div>
     </li>
       <li><a href="entreprise.html">Entreprise</a></li>
@@ -675,7 +725,7 @@ img { max-width: 100%; display: block; }
     </ul>
     <div class="nav-cta">
       <a href="ressources.html" class="btn btn-ghost" style="font-size:14px;padding:10px 18px;">Voir les résultats</a>
-      <a href="mailto:contact@semandata.com?subject=Demande de POV Semandata" class="btn btn-primary" style="font-size:14px;padding:10px 20px;">Demander un POV →</a>
+      <a href="mailto:contact@semandata.com?subject=Demande de POV GDE" class="btn btn-primary" style="font-size:14px;padding:10px 20px;">Demander un POV →</a>
     </div>
   </div>
 </nav>
@@ -700,7 +750,7 @@ img { max-width: 100%; display: block; }
     <!-- Titre central -->
     <div style="text-align:center;max-width:860px;margin:0 auto 72px;">
       <span style="display:inline-block;font-size:12px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--c-yellow);margin-bottom:16px;">La singularité scientifique</span>
-      <h2 style="font-size:44px;font-weight:900;color:white;letter-spacing:-2px;line-height:1.05;margin-bottom:24px;">Semandata n'est pas un éditeur de données.<br>Nous sommes <em style="font-style:normal;color:var(--c-yellow);">la science du sens.</em></h2>
+      <h2 style="font-size:44px;font-weight:900;color:white;letter-spacing:-2px;line-height:1.05;margin-bottom:24px;">GDE n'est pas un éditeur de données.<br>Nous sommes <em style="font-style:normal;color:var(--c-yellow);">la science du sens.</em></h2>
       <p style="font-size:18px;color:rgba(255,255,255,0.65);line-height:1.75;">Collibra gère des catalogues. Informatica transforme des flux. Alation documente des assets. Aucun ne répond à la question fondamentale : <strong style="color:white;">que signifie "client" pour votre entreprise ?</strong> Pas dans un système — pour toute l'entreprise, de façon formelle, déterministe, universelle. C'est exactement ce que le SMM® fait — depuis 2007.</p>
     </div>
 
@@ -719,10 +769,10 @@ img { max-width: 100%; display: block; }
         <div style="font-size:12px;color:rgba(255,255,255,0.25);font-style:italic;">Les MDM traditionnels s'arrêtent ici.</div>
       </div>
       <div style="background:rgba(10,112,255,0.18);padding:32px;border:1px solid rgba(10,112,255,0.35);">
-        <div style="font-size:11px;font-weight:700;color:var(--c-yellow);letter-spacing:1px;text-transform:uppercase;margin-bottom:16px;">Niveau 3 — SMM® Semandata</div>
+        <div style="font-size:11px;font-weight:700;color:var(--c-yellow);letter-spacing:1px;text-transform:uppercase;margin-bottom:16px;">Niveau 3 — SMM® GDE</div>
         <div style="font-size:22px;font-weight:900;color:white;margin-bottom:12px;letter-spacing:-0.5px;">Méta sémantique</div>
         <p style="font-size:14px;color:rgba(255,255,255,0.8);line-height:1.7;margin-bottom:20px;">Le SMM® définit ce qu'est un "client" pour l'entreprise — au-dessus de tous les systèmes. Universel. Non-statistique. Déterministe. Interrogeable par tout agent IA via API REST.</p>
-        <div style="font-size:12px;font-weight:700;color:var(--c-yellow);">Semandata — seul acteur mondial à ce niveau.</div>
+        <div style="font-size:12px;font-weight:700;color:var(--c-yellow);">GDE — seul acteur mondial à ce niveau.</div>
       </div>
     </div>
 
@@ -774,7 +824,7 @@ img { max-width: 100%; display: block; }
         <p class="section-subtitle">DEMS® n'est pas une application. C'est une plateforme. La différence : toutes ses fonctionnalités sont exposées via API REST et consommables par n'importe quel agent IA, n'importe quel système, en temps réel.</p>
         <ul class="feature-list" style="margin-top:24px;">
           <li><span class="feature-check">✦</span><strong>Non-statistique</strong> — le moteur SMM® ne fait pas d'inférence. Il raisonne sur des règles explicites. Résultat binaire : conforme ou non conforme. Pas de probabilité. Pas d'hallucination.</li>
-          <li><span class="feature-check">✦</span><strong>Souverain by design</strong> — DEMS® est déployé dans votre environnement. Vos données et règles ne quittent jamais votre périmètre. Ni vers GDE, ni vers Semandata, ni vers aucun tiers.</li>
+          <li><span class="feature-check">✦</span><strong>Souverain by design</strong> — DEMS® est déployé dans votre environnement. Vos données et règles ne quittent jamais votre périmètre. Ni vers GDE, ni vers GDE, ni vers aucun tiers.</li>
           <li><span class="feature-check">✦</span><strong>Agentique natif</strong> — conçu pour l'ère des agents avant que le terme existe. BER®, KVI®, DEI® : tout est interrogeable en REST. Vos agents décident dans le cadre que vous avez défini.</li>
           <li><span class="feature-check">✦</span><strong>SaaS géré</strong> — mises à jour transparentes. Aucune charge d'administration. SLA contractuel sur 3 niveaux.</li>
         </ul>
@@ -969,5 +1019,6 @@ img { max-width: 100%; display: block; }
         <div class="stat-number" style="font-size:36px;">Cloud</div>
         <div class="stat-title">Souverain by design</div>
         <div class="stat-desc">Microsoft Azure, AWS, Google Cloud — dans votre tenant. Disponible sur Azure Marketplace et GCP Marketplace. Vos crédits prépayés utilisés directement.</div>
-      <
-<script src="assets/cookies.js"></script>
+      </div>
+      <div class="stat-card">
+       

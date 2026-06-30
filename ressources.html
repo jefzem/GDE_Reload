@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ressources — Semandata | Témoignages, Références & Guides</title>
+  <title>Ressources — GDE | Témoignages, Références & Guides</title>
   <meta name="description" content="Résultats clients mesurés, références MIT/Gartner/réglementaires et guides pratiques pour dirigeants. 3 déploiements en production. ROI 15–30×.">
   <style>
 /* ============================================================
@@ -71,16 +71,10 @@ img { max-width: 100%; display: block; }
   display: flex; align-items: center; justify-content: space-between; gap: 32px;
 }
 .nav-logo {
-  display: flex; align-items: center; gap: 10px;
-  font-size: 20px; font-weight: 800; color: var(--c-heading);
-  letter-spacing: -0.5px; flex-shrink: 0;
+  display: flex; align-items: center;
+  flex-shrink: 0; line-height: 0;
 }
-.nav-logo .logo-mark {
-  width: 36px; height: 36px; border-radius: 10px;
-  background: var(--c-blue700);
-  display: flex; align-items: center; justify-content: center;
-  color: white; font-weight: 900; font-size: 16px; letter-spacing: -1px;
-}
+/* logo-mark replaced by SVG image */
 .nav-links {
   display: flex; align-items: center; gap: 4px;
   list-style: none; flex: 1; justify-content: center;
@@ -93,31 +87,40 @@ img { max-width: 100%; display: block; }
 }
 .nav-links a:hover { background: var(--c-grey100); color: var(--c-heading); }
 .nav-links a.active { background: var(--c-blue50); color: var(--c-blue700); font-weight: 600; }
-/* ── Dropdown Ressources ── */
+/* ── Méga-menu Ressources ── */
 .nav-dropdown { position: relative; }
-.nav-dropdown > a::after {
-  content: ' ▾'; font-size: 10px; opacity: 0.6;
-}
-.nav-dropdown-menu {
+.nav-dropdown > a::after { content: ' ▾'; font-size: 10px; opacity: 0.6; }
+.nav-mega-menu {
   display: none;
   position: absolute; top: calc(100% + 8px); left: 50%;
   transform: translateX(-50%);
   background: white; border: 1px solid var(--c-grey200);
   border-radius: var(--r-lg); box-shadow: var(--shadow-lg);
-  min-width: 210px; padding: 8px; z-index: 200;
-  white-space: nowrap;
+  width: 660px; padding: 20px; z-index: 200;
+  grid-template-columns: 1fr 1fr 1fr; gap: 0;
 }
-.nav-dropdown:hover .nav-dropdown-menu { display: block; }
-.nav-dropdown-menu a {
-  display: block; padding: 10px 14px; border-radius: var(--r-md);
-  font-size: 14px; font-weight: 500; color: var(--c-paragraph);
-  transition: all 0.15s ease;
+.nav-mega-menu.open { display: grid; }
+.nav-dropdown:hover .nav-mega-menu { display: grid; }
+.mega-col { padding: 0 16px; }
+.mega-col + .mega-col { border-left: 1px solid var(--c-grey200); }
+.mega-col-title {
+  font-size: 11px; font-weight: 800; text-transform: uppercase;
+  letter-spacing: 1.2px; color: var(--c-blue700);
+  padding: 0 0 10px; margin-bottom: 4px;
+  border-bottom: 2px solid var(--c-blue100);
 }
-.nav-dropdown-menu a:hover { background: var(--c-blue50); color: var(--c-blue700); }
-.nav-dropdown-menu .dropdown-label {
-  font-size: 11px; font-weight: 700; text-transform: uppercase;
-  letter-spacing: 1px; color: var(--c-caption); padding: 6px 14px 4px;
+.mega-col a {
+  display: flex; align-items: flex-start; gap: 8px;
+  padding: 9px 8px; border-radius: var(--r-md);
+  font-size: 13px; font-weight: 500; color: var(--c-paragraph);
+  transition: all 0.15s ease; line-height: 1.35; text-decoration: none;
 }
+.mega-col a:hover { background: var(--c-blue50); color: var(--c-blue700); }
+.mega-col a .mi { font-size: 15px; flex-shrink: 0; margin-top: 1px; }
+.mega-col a .ml { display: flex; flex-direction: column; }
+.mega-col a .ml strong { font-weight: 700; color: var(--c-heading); font-size: 13px; }
+.mega-col a .ml span { font-size: 11px; color: var(--c-caption); margin-top: 1px; }
+@media (max-width: 768px) { .nav-mega-menu { display: none !important; } }
 
 .nav-cta { display: flex; align-items: center; gap: 12px; flex-shrink: 0; }
 
@@ -601,19 +604,67 @@ img { max-width: 100%; display: block; }
   <div class="nav-inner">
     <a href="index.html" class="nav-logo">
       <div class="logo-mark">SD</div>
-      Semandata
+      GDE
     </a>
     <ul class="nav-links">
       <li><a href="plateforme.html">Plateforme</a></li>
       <li><a href="solutions.html">Solutions</a></li>
-      <li class="nav-dropdown">
-      <a href="ressources.html" class="active">Ressources</a>
-      <div class="nav-dropdown-menu">
-        <div class="dropdown-label">Ressources</div>
-        <a href="ressources.html#temoignages">Témoignages clients</a>
-        <a href="ressources.html#insights">Références &amp; Insights</a>
-        <a href="ressources.html#guides">Guides pratiques</a>
-        <a href="ressources.html#articles">Articles</a>
+      <li class="nav-dropdown" id="nav-ressources">
+      <a href="ressources.html" class="active" onclick="toggleMega(event)">Ressources</a>
+      <div class="nav-mega-menu">
+        <div class="mega-col">
+          <div class="mega-col-title">Témoignages</div>
+          <a href="ressources.html#temoignage-auto">
+            <span class="mi">🚗</span>
+            <span class="ml"><strong>Automobile Tier-1</strong><span>3 Mds€ identifiés en 2h de POV</span></span>
+          </a>
+          <a href="ressources.html#temoignage-agro">
+            <span class="mi">🌾</span>
+            <span class="ml"><strong>Agro-alimentaire</strong><span>100% traçabilité supply chain — 8 sem.</span></span>
+          </a>
+          <a href="ressources.html#temoignage-industrie">
+            <span class="mi">🏗️</span>
+            <span class="ml"><strong>Industrie Matériaux</strong><span>127M€ économisés — 47 usines</span></span>
+          </a>
+        </div>
+        <div class="mega-col">
+          <div class="mega-col-title">Insights</div>
+          <a href="ressources.html#insight-mit">
+            <span class="mi">🎓</span>
+            <span class="ml"><strong>MIT CISR — Mai 2026</strong><span>Semantic Layer : la preuve empirique</span></span>
+          </a>
+          <a href="ressources.html#insight-gartner">
+            <span class="mi">📊</span>
+            <span class="ml"><strong>Gartner Research</strong><span>40% projets agentiques abandonnés d'ici 2027</span></span>
+          </a>
+          <a href="ressources.html#insight-reglementaire">
+            <span class="mi">⚖️</span>
+            <span class="ml"><strong>Paysage réglementaire</strong><span>RGPD · AI Act · DORA · NIS2 · CSRD</span></span>
+          </a>
+          <a href="ressources.html#insight-incidents">
+            <span class="mi">🔴</span>
+            <span class="ml"><strong>Incidents de référence</strong><span>Knight Capital, VW, TikTok, Meta…</span></span>
+          </a>
+        </div>
+        <div class="mega-col">
+          <div class="mega-col-title">Guides</div>
+          <a href="ressources.html#guide-pov">
+            <span class="mi">🔍</span>
+            <span class="ml"><strong>Guide POV</strong><span>Cadrer votre Proof of Value en 4 semaines</span></span>
+          </a>
+          <a href="ressources.html#guide-ai-act">
+            <span class="mi">📋</span>
+            <span class="ml"><strong>Guide Conformité AI Act</strong><span>Ce qu'il faut avant 2027</span></span>
+          </a>
+          <a href="ressources.html#guide-deploiement">
+            <span class="mi">☁️</span>
+            <span class="ml"><strong>Guide Déploiement Souverain</strong><span>DEMS® dans votre cloud ou on-premise</span></span>
+          </a>
+          <a href="ressources.html#guide-kvi">
+            <span class="mi">💶</span>
+            <span class="ml"><strong>Guide KVI®</strong><span>Valoriser votre risque en euros</span></span>
+          </a>
+        </div>
       </div>
     </li>
       <li><a href="entreprise.html">Entreprise</a></li>
@@ -623,7 +674,7 @@ img { max-width: 100%; display: block; }
     </ul>
     <div class="nav-cta">
       <a href="ressources.html" class="btn btn-ghost" style="font-size:14px;padding:10px 18px;">Voir les résultats</a>
-      <a href="mailto:contact@semandata.com?subject=Demande POV Semandata" class="btn btn-primary" style="font-size:14px;padding:10px 20px;">Demander un POV →</a>
+      <a href="mailto:contact@semandata.com?subject=Demande POV GDE" class="btn btn-primary" style="font-size:14px;padding:10px 20px;">Demander un POV →</a>
     </div>
   </div>
 </nav>
@@ -687,6 +738,7 @@ img { max-width: 100%; display: block; }
       <p class="section-subtitle">Noms sous NDA. Résultats co-signés. ROI moyen : 15 à 30&times; l'investissement.</p>
     </div>
 
+    <span id="temoignage-auto" style="display:block;position:relative;top:-80px;visibility:hidden;"></span>
     <!-- Cas 1 — Automobile -->
     <div class="case-card">
       <div class="case-header">
@@ -740,6 +792,7 @@ img { max-width: 100%; display: block; }
       </div>
     </div>
 
+    <span id="temoignage-agro" style="display:block;position:relative;top:-80px;visibility:hidden;"></span>
     <!-- Cas 2 — Agro -->
     <div class="case-card case-card-cream">
       <div class="case-header" style="background:var(--c-cream);">
@@ -793,6 +846,7 @@ img { max-width: 100%; display: block; }
       </div>
     </div>
 
+    <span id="temoignage-industrie" style="display:block;position:relative;top:-80px;visibility:hidden;"></span>
     <!-- Cas 3 — Industrie -->
     <div class="case-card">
       <div class="case-header">
@@ -854,12 +908,12 @@ img { max-width: 100%; display: block; }
         <div class="pov-left">
           <span class="section-label" style="color:var(--c-blue100);">Votre prochain pas</span>
           <h3>Votre résultat en 4 semaines. Sur vos données réelles.</h3>
-          <p>Chaque POV Semandata part de vos données de production réelles — pas de données simulées, pas de démonstration générique. Vous voyez la valeur cachée dans votre SI avant de prendre la moindre décision.</p>
+          <p>Chaque POV GDE part de vos données de production réelles — pas de données simulées, pas de démonstration générique. Vous voyez la valeur cachée dans votre SI avant de prendre la moindre décision.</p>
           <div class="pov-guarantee">
             Garantie : Si le POV ne révèle pas de valeur mesurable, vous ne payez rien.
           </div>
           <div style="margin-top:24px;">
-            <a href="mailto:contact@semandata.com?subject=Demande POV Semandata" class="btn btn-white btn-lg">Demander mon POV →</a>
+            <a href="mailto:contact@semandata.com?subject=Demande POV GDE" class="btn btn-white btn-lg">Demander mon POV →</a>
           </div>
         </div>
         <div>
@@ -902,6 +956,7 @@ img { max-width: 100%; display: block; }
       <p class="section-subtitle">Références académiques, réglementaires et marché qui valident l'approche GDE.</p>
     </div>
 
+    <span id="insight-mit" style="display:block;position:relative;top:-80px;visibility:hidden;"></span>
     <!-- MIT CISR Mai 2026 -->
     <div class="mit-block">
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start;">
@@ -941,6 +996,7 @@ img { max-width: 100%; display: block; }
       </div>
     </div>
 
+    <span id="insight-gartner" style="display:block;position:relative;top:-80px;visibility:hidden;"></span>
     <!-- Gartner -->
     <div style="margin-bottom:48px;">
       <div style="margin-bottom:24px;">
@@ -969,6 +1025,7 @@ img { max-width: 100%; display: block; }
       </div>
     </div>
 
+    <span id="insight-reglementaire" style="display:block;position:relative;top:-80px;visibility:hidden;"></span>
     <!-- Réglementation -->
     <div style="margin-bottom:48px;">
       <div style="margin-bottom:24px;">
@@ -1031,7 +1088,7 @@ img { max-width: 100%; display: block; }
     <!-- Incidents -->
     <div>
       <div style="margin-bottom:24px;">
-        <span class="section-label">Incidents de référence</span>
+        <span id="insight-incidents" style="display:block;position:relative;top:-80px;visibility:hidden;"></span><span class="section-label">Incidents de référence</span>
         <h3 style="font-size:26px;font-weight:800;color:var(--c-heading);letter-spacing:-1px;">Ces montants ne sont pas des exceptions. Ils sont la norme.</h3>
       </div>
       <div class="incidents-grid">
@@ -1093,10 +1150,10 @@ img { max-width: 100%; display: block; }
     <div class="guides-grid">
 
       <!-- Guide 1 -->
-      <div class="guide-card">
+      <div class="guide-card" id="guide-pov">
         <span class="guide-badge badge-operationnel">Opérationnel</span>
         <div class="guide-icon">&#128270;</div>
-        <h3 class="guide-title">Guide POV Semandata — Cadrer votre Proof of Value en 4 semaines</h3>
+        <h3 class="guide-title">Guide POV GDE — Cadrer votre Proof of Value en 4 semaines</h3>
         <p class="guide-for">Pour : <strong>CDO, CIO, CCO, CFO</strong> qui veulent un résultat chiffré avant décision d'achat</p>
         <ul class="guide-covers">
           <li>Comment identifier le bon domaine métier cible pour votre POV</li>
@@ -1106,12 +1163,12 @@ img { max-width: 100%; display: block; }
         </ul>
         <div class="guide-footer">
           <span class="guide-duration">Lecture 15 min</span>
-          <a href="mailto:contact@semandata.com?subject=Guide POV Semandata" class="btn btn-primary">Demander ce guide →</a>
+          <a href="mailto:contact@semandata.com?subject=Guide POV GDE" class="btn btn-primary">Demander ce guide →</a>
         </div>
       </div>
 
       <!-- Guide 2 -->
-      <div class="guide-card">
+      <div class="guide-card" id="guide-ai-act">
         <span class="guide-badge badge-reglementaire">Réglementaire</span>
         <div class="guide-icon">&#9878;</div>
         <h3 class="guide-title">Guide Conformité AI Act — Ce que votre organisation doit avoir avant 2027</h3>
@@ -1130,7 +1187,7 @@ img { max-width: 100%; display: block; }
       </div>
 
       <!-- Guide 3 -->
-      <div class="guide-card">
+      <div class="guide-card" id="guide-deploiement">
         <span class="guide-badge badge-technique">Technique — Pour DSI accompagnants</span>
         <div class="guide-icon">&#128295;</div>
         <h3 class="guide-title">Guide Déploiement Souverain — DEMS® dans votre cloud ou on-premise</h3>
@@ -1149,7 +1206,7 @@ img { max-width: 100%; display: block; }
       </div>
 
       <!-- Guide 4 -->
-      <div class="guide-card">
+      <div class="guide-card" id="guide-kvi">
         <span class="guide-badge badge-financier">Financier</span>
         <div class="guide-icon">&#128200;</div>
         <h3 class="guide-title">Guide KVI® — Valoriser votre risque en euros avant tout projet gouvernance</h3>
@@ -1163,7 +1220,7 @@ img { max-width: 100%; display: block; }
         </ul>
         <div class="guide-footer">
           <span class="guide-duration">Lecture 20 min</span>
-          <a href="mailto:contact@semandata.com?subject=Guide KVI Semandata" class="btn btn-primary">Demander ce guide →</a>
+          <a href="mailto:contact@semandata.com?subject=Guide KVI GDE" class="btn btn-primary">Demander ce guide →</a>
         </div>
       </div>
 
@@ -1772,7 +1829,7 @@ img { max-width: 100%; display: block; }
     <h2>Votre POV. 4 semaines. Résultat en euros.</h2>
     <p>Depuis 2007, GDE a construit l'unique plateforme qui opère au niveau méta-sémantique de l'entreprise. Les POV révèlent systématiquement entre 15 et 30&times; l'investissement en valeur identifiée ou risque évité.</p>
     <div class="cta-actions">
-      <a href="mailto:contact@semandata.com?subject=Demande POV Semandata" class="btn btn-primary btn-lg">Demander un POV →</a>
+      <a href="mailto:contact@semandata.com?subject=Demande POV GDE" class="btn btn-primary btn-lg">Demander un POV →</a>
       <a href="plateforme.html" class="btn btn-outline-white btn-lg">Voir la plateforme</a>
     </div>
   </div>
@@ -1785,7 +1842,7 @@ img { max-width: 100%; display: block; }
   <div class="container">
     <div class="footer-grid">
       <div>
-        <div class="footer-brand">Semandata</div>
+        <div class="footer-brand">GDE — Global Data Excellence</div>
         <div class="footer-tagline">La couche de gouvernance sémantique pour les architectures agentiques d'entreprise. Powered by Data Excellence Science®.<br><br>Fondée 2007 · Genève, Suisse</div>
       </div>
       <div>
@@ -1822,7 +1879,7 @@ img { max-width: 100%; display: block; }
     </div>
     <div class="footer-bottom">
       <div class="footer-copy">© 2007–2026 Global Data Excellence SA · Genève, Suisse · Tous droits réservés<br>
-      Semandata est la marque commerciale de Global Data Excellence SA opérant la plateforme DEMS®.</div>
+      GDE est la marque commerciale de Global Data Excellence SA opérant la plateforme DEMS®.</div>
       <div class="footer-ip">DEMS® · SMM® · BER® · KVI® · DEI® · DeCRIPT® sont des marques déposées de Global Data Excellence SA. Brevets en cours. Data Excellence Science® est une marque déposée.</div>
     </div>
   </div>

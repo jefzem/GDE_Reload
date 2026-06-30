@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Partenaires & Go-to-Market — Semandata</title>
-  <meta name="description" content="Devenez partenaire Semandata. Programme partenaires qualifiés, intégrateurs certifiés, OEM. Déploiement dans l'infrastructure du client. Distribution via cabinets de conseil et ESN spécialisés.">
+  <title>Partenaires & Go-to-Market — GDE</title>
+  <meta name="description" content="Devenez partenaire GDE. Programme partenaires qualifiés, intégrateurs certifiés, OEM. Déploiement dans l'infrastructure du client. Distribution via cabinets de conseil et ESN spécialisés.">
   <style>
 /* ============================================================
    SEMANDATA — Design System (inspiré Alan.fr)
@@ -82,16 +82,10 @@ img { max-width: 100%; display: block; }
   display: flex; align-items: center; justify-content: space-between; gap: 32px;
 }
 .nav-logo {
-  display: flex; align-items: center; gap: 10px;
-  font-size: 20px; font-weight: 800; color: var(--c-heading);
-  letter-spacing: -0.5px; flex-shrink: 0;
+  display: flex; align-items: center;
+  flex-shrink: 0; line-height: 0;
 }
-.nav-logo .logo-mark {
-  width: 36px; height: 36px; border-radius: 10px;
-  background: var(--c-blue700);
-  display: flex; align-items: center; justify-content: center;
-  color: white; font-weight: 900; font-size: 16px; letter-spacing: -1px;
-}
+/* logo-mark replaced by SVG image */
 .nav-links {
   display: flex; align-items: center; gap: 4px;
   list-style: none; flex: 1; justify-content: center;
@@ -104,31 +98,40 @@ img { max-width: 100%; display: block; }
 }
 .nav-links a:hover { background: var(--c-grey100); color: var(--c-heading); }
 .nav-links a.active { background: var(--c-blue50); color: var(--c-blue700); font-weight: 600; }
-/* ── Dropdown Ressources ── */
+/* ── Méga-menu Ressources ── */
 .nav-dropdown { position: relative; }
-.nav-dropdown > a::after {
-  content: ' ▾'; font-size: 10px; opacity: 0.6;
-}
-.nav-dropdown-menu {
+.nav-dropdown > a::after { content: ' ▾'; font-size: 10px; opacity: 0.6; }
+.nav-mega-menu {
   display: none;
   position: absolute; top: calc(100% + 8px); left: 50%;
   transform: translateX(-50%);
   background: white; border: 1px solid var(--c-grey200);
   border-radius: var(--r-lg); box-shadow: var(--shadow-lg);
-  min-width: 210px; padding: 8px; z-index: 200;
-  white-space: nowrap;
+  width: 660px; padding: 20px; z-index: 200;
+  grid-template-columns: 1fr 1fr 1fr; gap: 0;
 }
-.nav-dropdown:hover .nav-dropdown-menu { display: block; }
-.nav-dropdown-menu a {
-  display: block; padding: 10px 14px; border-radius: var(--r-md);
-  font-size: 14px; font-weight: 500; color: var(--c-paragraph);
-  transition: all 0.15s ease;
+.nav-mega-menu.open { display: grid; }
+.nav-dropdown:hover .nav-mega-menu { display: grid; }
+.mega-col { padding: 0 16px; }
+.mega-col + .mega-col { border-left: 1px solid var(--c-grey200); }
+.mega-col-title {
+  font-size: 11px; font-weight: 800; text-transform: uppercase;
+  letter-spacing: 1.2px; color: var(--c-blue700);
+  padding: 0 0 10px; margin-bottom: 4px;
+  border-bottom: 2px solid var(--c-blue100);
 }
-.nav-dropdown-menu a:hover { background: var(--c-blue50); color: var(--c-blue700); }
-.nav-dropdown-menu .dropdown-label {
-  font-size: 11px; font-weight: 700; text-transform: uppercase;
-  letter-spacing: 1px; color: var(--c-caption); padding: 6px 14px 4px;
+.mega-col a {
+  display: flex; align-items: flex-start; gap: 8px;
+  padding: 9px 8px; border-radius: var(--r-md);
+  font-size: 13px; font-weight: 500; color: var(--c-paragraph);
+  transition: all 0.15s ease; line-height: 1.35; text-decoration: none;
 }
+.mega-col a:hover { background: var(--c-blue50); color: var(--c-blue700); }
+.mega-col a .mi { font-size: 15px; flex-shrink: 0; margin-top: 1px; }
+.mega-col a .ml { display: flex; flex-direction: column; }
+.mega-col a .ml strong { font-weight: 700; color: var(--c-heading); font-size: 13px; }
+.mega-col a .ml span { font-size: 11px; color: var(--c-caption); margin-top: 1px; }
+@media (max-width: 768px) { .nav-mega-menu { display: none !important; } }
 
 .nav-cta { display: flex; align-items: center; gap: 12px; flex-shrink: 0; }
 
@@ -652,20 +655,67 @@ img { max-width: 100%; display: block; }
 <nav class="nav">
   <div class="nav-inner">
     <a href="index.html" class="nav-logo">
-      <div class="logo-mark">Sm</div>
-      Semandata
+      <img src="assets/logo-gde.svg" alt="GDE — Global Data Excellence" style="height:42px;width:auto;">
     </a>
     <ul class="nav-links">
       <li><a href="plateforme.html">Plateforme</a></li>
       <li><a href="solutions.html">Solutions</a></li>
-      <li class="nav-dropdown">
-      <a href="ressources.html">Ressources</a>
-      <div class="nav-dropdown-menu">
-        <div class="dropdown-label">Ressources</div>
-        <a href="ressources.html#temoignages">Témoignages clients</a>
-        <a href="ressources.html#insights">Références &amp; Insights</a>
-        <a href="ressources.html#guides">Guides pratiques</a>
-        <a href="ressources.html#articles">Articles</a>
+      <li class="nav-dropdown" id="nav-ressources">
+      <a href="ressources.html" onclick="toggleMega(event)">Ressources</a>
+      <div class="nav-mega-menu">
+        <div class="mega-col">
+          <div class="mega-col-title">Témoignages</div>
+          <a href="ressources.html#temoignage-auto">
+            <span class="mi">🚗</span>
+            <span class="ml"><strong>Automobile Tier-1</strong><span>3 Mds€ identifiés en 2h de POV</span></span>
+          </a>
+          <a href="ressources.html#temoignage-agro">
+            <span class="mi">🌾</span>
+            <span class="ml"><strong>Agro-alimentaire</strong><span>100% traçabilité supply chain — 8 sem.</span></span>
+          </a>
+          <a href="ressources.html#temoignage-industrie">
+            <span class="mi">🏗️</span>
+            <span class="ml"><strong>Industrie Matériaux</strong><span>127M€ économisés — 47 usines</span></span>
+          </a>
+        </div>
+        <div class="mega-col">
+          <div class="mega-col-title">Insights</div>
+          <a href="ressources.html#insight-mit">
+            <span class="mi">🎓</span>
+            <span class="ml"><strong>MIT CISR — Mai 2026</strong><span>Semantic Layer : la preuve empirique</span></span>
+          </a>
+          <a href="ressources.html#insight-gartner">
+            <span class="mi">📊</span>
+            <span class="ml"><strong>Gartner Research</strong><span>40% projets agentiques abandonnés d'ici 2027</span></span>
+          </a>
+          <a href="ressources.html#insight-reglementaire">
+            <span class="mi">⚖️</span>
+            <span class="ml"><strong>Paysage réglementaire</strong><span>RGPD · AI Act · DORA · NIS2 · CSRD</span></span>
+          </a>
+          <a href="ressources.html#insight-incidents">
+            <span class="mi">🔴</span>
+            <span class="ml"><strong>Incidents de référence</strong><span>Knight Capital, VW, TikTok, Meta…</span></span>
+          </a>
+        </div>
+        <div class="mega-col">
+          <div class="mega-col-title">Guides</div>
+          <a href="ressources.html#guide-pov">
+            <span class="mi">🔍</span>
+            <span class="ml"><strong>Guide POV</strong><span>Cadrer votre Proof of Value en 4 semaines</span></span>
+          </a>
+          <a href="ressources.html#guide-ai-act">
+            <span class="mi">📋</span>
+            <span class="ml"><strong>Guide Conformité AI Act</strong><span>Ce qu'il faut avant 2027</span></span>
+          </a>
+          <a href="ressources.html#guide-deploiement">
+            <span class="mi">☁️</span>
+            <span class="ml"><strong>Guide Déploiement Souverain</strong><span>DEMS® dans votre cloud ou on-premise</span></span>
+          </a>
+          <a href="ressources.html#guide-kvi">
+            <span class="mi">💶</span>
+            <span class="ml"><strong>Guide KVI®</strong><span>Valoriser votre risque en euros</span></span>
+          </a>
+        </div>
       </div>
     </li>
       <li><a href="entreprise.html">Entreprise</a></li>
@@ -675,7 +725,7 @@ img { max-width: 100%; display: block; }
     </ul>
     <div class="nav-cta">
       <a href="ressources.html" class="btn btn-ghost" style="font-size:14px;padding:10px 18px;">Voir les résultats</a>
-      <a href="mailto:contact@semandata.com?subject=Partenariat Semandata" class="btn btn-primary" style="font-size:14px;padding:10px 20px;">Devenir partenaire →</a>
+      <a href="mailto:contact@semandata.com?subject=Partenariat GDE" class="btn btn-primary" style="font-size:14px;padding:10px 20px;">Devenir partenaire →</a>
     </div>
   </div>
 </nav>
@@ -684,12 +734,12 @@ img { max-width: 100%; display: block; }
   <div class="container">
     <span class="section-label">Modèle commercial & Partenaires</span>
     <h1>GDE vend directement.<br>Des partenaires qualifiés accompagnent.</h1>
-    <p>Semandata est le seul vendeur de DEMS®. Pas de revendeur, pas de distributeur. En revanche, chaque déploiement mobilise des partenaires qualifiés — cabinets de conseil, experts réglementaires, intégrateurs SI — qui accompagnent la mise en œuvre sans porter la relation commerciale. La qualification n'est pas un label : c'est la condition de la promesse.</p>
+    <p>GDE est le seul vendeur de DEMS®. Pas de revendeur, pas de distributeur. En revanche, chaque déploiement mobilise des partenaires qualifiés — cabinets de conseil, experts réglementaires, intégrateurs SI — qui accompagnent la mise en œuvre sans porter la relation commerciale. La qualification n'est pas un label : c'est la condition de la promesse.</p>
     <div style="margin-top:28px;padding:20px 24px;background:rgba(255,255,255,0.08);border-left:3px solid var(--c-blue400);border-radius:var(--r-md);">
       <p style="font-size:15px;color:rgba(255,255,255,0.85);line-height:1.6;margin:0;"><strong style="color:white;">DEMS® n'est pas un logiciel banalisé.</strong> Certains de ses algorithmes sont reconnus stratégiques par des autorités européennes. La mise en œuvre ne peut être réalisée que par des <strong style="color:white;">partenaires qualifiés et certifiés</strong> — parce que la plateforme promet des résultats exacts et déterministes, les conditions de déploiement sont rigoureusement contrôlées. Les interlocuteurs en entreprise sont des dirigeants et responsables à fortes responsabilités.</p>
     </div>
     <div style="margin-top:32px;display:flex;gap:12px;flex-wrap:wrap;">
-      <a href="mailto:contact@semandata.com?subject=Programme Partenaire Semandata" class="btn btn-primary btn-lg">Rejoindre le programme →</a>
+      <a href="mailto:contact@semandata.com?subject=Programme Partenaire GDE" class="btn btn-primary btn-lg">Rejoindre le programme →</a>
       <a href="#programme" class="btn btn-secondary btn-lg">Voir les avantages</a>
     </div>
   </div>
@@ -809,7 +859,7 @@ img { max-width: 100%; display: block; }
     <div class="text-center">
       <span class="section-label">Modèle commercial</span>
       <h2 class="section-title">Un seul canal de vente : GDE.<br>Des partenaires qualifiés pour accompagner.</h2>
-      <p class="section-subtitle" style="margin-top:12px;">Semandata vend directement. Il n'existe pas de revendeur, pas de distributeur, pas d'intermédiaire commercial. En revanche, chaque déploiement s'appuie sur des partenaires qualifiés et certifiés — qui accompagnent la mise en œuvre sans jamais porter la relation commerciale.</p>
+      <p class="section-subtitle" style="margin-top:12px;">GDE vend directement. Il n'existe pas de revendeur, pas de distributeur, pas d'intermédiaire commercial. En revanche, chaque déploiement s'appuie sur des partenaires qualifiés et certifiés — qui accompagnent la mise en œuvre sans jamais porter la relation commerciale.</p>
     </div>
 
     <!-- Canal unique GDE -->
@@ -817,7 +867,7 @@ img { max-width: 100%; display: block; }
       <div style="font-size:56px;flex-shrink:0;">🎯</div>
       <div style="flex:1;min-width:280px;">
         <div style="font-size:12px;font-weight:700;color:rgba(255,255,255,0.6);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:10px;">Canal de distribution unique</div>
-        <div style="font-size:22px;font-weight:900;color:white;margin-bottom:12px;">Semandata vend directement au client final.</div>
+        <div style="font-size:22px;font-weight:900;color:white;margin-bottom:12px;">GDE vend directement au client final.</div>
         <p style="font-size:15px;color:rgba(255,255,255,0.8);line-height:1.65;">La relation commerciale, la signature du contrat, la responsabilité de la promesse — c'est GDE. Toujours. Pas un revendeur, pas un agrégateur, pas une marketplace. Ce choix n'est pas une contrainte commerciale : c'est la condition de la qualité. La plateforme promet des résultats exacts et déterministes. Cette promesse ne peut pas être déléguée à un intermédiaire qui ne la maîtrise pas.</p>
       </div>
       <div style="display:flex;flex-direction:column;gap:10px;flex-shrink:0;">
@@ -911,7 +961,7 @@ img { max-width: 100%; display: block; }
     <div class="text-center">
       <span class="section-label">Programme de qualification</span>
       <h2 class="section-title">Trois niveaux de qualification.<br>Un standard d'exigence.</h2>
-      <p class="section-subtitle">Les partenaires d'accompagnement de Semandata ne sont pas des revendeurs. Ce sont des experts qualifiés qui maîtrisent la Data Excellence Science® et les conditions de déploiement de DEMS®. La qualification se mérite — et se maintient.</p>
+      <p class="section-subtitle">Les partenaires d'accompagnement de GDE ne sont pas des revendeurs. Ce sont des experts qualifiés qui maîtrisent la Data Excellence Science® et les conditions de déploiement de DEMS®. La qualification se mérite — et se maintient.</p>
     </div>
     <div class="editions-grid" style="margin-top:48px;">
       <div class="edition-card">
@@ -922,10 +972,10 @@ img { max-width: 100%; display: block; }
           <li><span class="ef-check">✓</span> Accès à la documentation et aux cas d'usage</li>
           <li><span class="ef-check">✓</span> Accompagnement GDE sur les premiers projets</li>
           <li><span class="ef-check">✓</span> Apporteur d'affaires — commission sur deals signés</li>
-          <li><span class="ef-check">✓</span> Accréditation "Semandata Associé"</li>
+          <li><span class="ef-check">✓</span> Accréditation "GDE Associé"</li>
         </ul>
         <div class="edition-cta">
-          <a href="mailto:contact@semandata.com?subject=Programme Associé Semandata" class="btn btn-secondary">Nous contacter</a>
+          <a href="mailto:contact@semandata.com?subject=Programme Associé GDE" class="btn btn-secondary">Nous contacter</a>
         </div>
       </div>
       <div class="edition-card featured">
@@ -939,10 +989,10 @@ img { max-width: 100%; display: block; }
           <li><span class="ef-check">✓</span> Conduite autonome du POV (4 semaines) supervisée GDE</li>
           <li><span class="ef-check">✓</span> Co-interventions et support technique prioritaire</li>
           <li><span class="ef-check">✓</span> Renouvellement annuel de certification obligatoire</li>
-          <li><span class="ef-check">✓</span> Badge "Semandata Certified Partner"</li>
+          <li><span class="ef-check">✓</span> Badge "GDE Certified Partner"</li>
         </ul>
         <div class="edition-cta">
-          <a href="mailto:contact@semandata.com?subject=Programme Certifié Semandata" class="btn btn-primary">Rejoindre le programme →</a>
+          <a href="mailto:contact@semandata.com?subject=Programme Certifié GDE" class="btn btn-primary">Rejoindre le programme →</a>
         </div>
       </div>
       <div class="edition-card">
@@ -957,7 +1007,7 @@ img { max-width: 100%; display: block; }
           <li><span class="ef-check">✓</span> GDE reste responsable des mises à jour IP</li>
         </ul>
         <div class="edition-cta">
-          <a href="mailto:contact@semandata.com?subject=Partenariat Intégré Semandata" class="btn btn-secondary">Nous contacter</a>
+          <a href="mailto:contact@semandata.com?subject=Partenariat Intégré GDE" class="btn btn-secondary">Nous contacter</a>
         </div>
       </div>
     </div>
@@ -982,7 +1032,7 @@ img { max-width: 100%; display: block; }
       <div class="stat-card">
         <div class="stat-number">40%</div>
         <div class="stat-title">des projets agentiques</div>
-        <div class="stat-desc">seront abandonnés d'ici 2027 faute de gouvernance. Chaque projet abandonné est une ouverture commerciale pour Semandata.</div>
+        <div class="stat-desc">seront abandonnés d'ici 2027 faute de gouvernance. Chaque projet abandonné est une ouverture commerciale pour GDE.</div>
         <div class="stat-source">Source : Gartner, 2025</div>
       </div>
       <div class="stat-card">
@@ -1007,7 +1057,7 @@ img { max-width: 100%; display: block; }
         <thead>
           <tr style="background:var(--c-heading);">
             <th style="padding:16px 20px;text-align:left;font-size:13px;color:rgba(255,255,255,0.6);font-weight:700;letter-spacing:0.5px;width:25%;">Fonctionnalité</th>
-            <th style="padding:16px 20px;text-align:center;font-size:14px;color:white;font-weight:800;width:19%;">Semandata DEMS®</th>
+            <th style="padding:16px 20px;text-align:center;font-size:14px;color:white;font-weight:800;width:19%;">GDE DEMS®</th>
             <th style="padding:16px 20px;text-align:center;font-size:13px;color:rgba(255,255,255,0.6);font-weight:600;width:14%;">Collibra</th>
             <th style="padding:16px 20px;text-align:center;font-size:13px;color:rgba(255,255,255,0.6);font-weight:600;width:14%;">Informatica</th>
             <th style="padding:16px 20px;text-align:center;font-size:13px;color:rgba(255,255,255,0.6);font-weight:600;width:14%;">Alation</th>

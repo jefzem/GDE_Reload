@@ -92,15 +92,16 @@ img { max-width: 100%; display: block; }
 .nav-dropdown > a::after { content: ' ▾'; font-size: 10px; opacity: 0.6; }
 .nav-mega-menu {
   display: none;
-  position: absolute; top: calc(100% + 8px); left: 50%;
+  position: absolute; top: calc(100% + 12px); left: 50%;
   transform: translateX(-50%);
-  background: white; border: 1px solid var(--c-grey200);
-  border-radius: var(--r-lg); box-shadow: var(--shadow-lg);
-  width: 660px; padding: 20px; z-index: 200;
+  background: #ffffff !important;
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.12), 0 2px 8px rgba(0,0,0,0.06);
+  width: 680px; padding: 24px; z-index: 500;
   grid-template-columns: 1fr 1fr 1fr; gap: 0;
 }
 .nav-mega-menu.open { display: grid; }
-.nav-dropdown:hover .nav-mega-menu { display: grid; }
 .mega-col { padding: 0 16px; }
 .mega-col + .mega-col { border-left: 1px solid var(--c-grey200); }
 .mega-col-title {
@@ -628,7 +629,7 @@ img { max-width: 100%; display: block; }
           </a>
         </div>
         <div class="mega-col">
-          <div class="mega-col-title">Insights</div>
+          <div class="mega-col-title">Analystes</div>
           <a href="ressources.html#insight-mit">
             <span class="mi">🎓</span>
             <span class="ml"><strong>MIT CISR — Mai 2026</strong><span>Semantic Layer : la preuve empirique</span></span>
@@ -674,7 +675,7 @@ img { max-width: 100%; display: block; }
     </ul>
     <div class="nav-cta">
       <a href="ressources.html" class="btn btn-ghost" style="font-size:14px;padding:10px 18px;">Voir les résultats</a>
-      <a href="mailto:contact@semandata.com?subject=Demande POV GDE" class="btn btn-primary" style="font-size:14px;padding:10px 20px;">Demander un POV →</a>
+      <a href="mailto:contact@globaldataexcellence.com?subject=Demande POV GDE" class="btn btn-primary" style="font-size:14px;padding:10px 20px;">Demander un POV →</a>
     </div>
   </div>
 </nav>
@@ -716,7 +717,7 @@ img { max-width: 100%; display: block; }
       Témoignages clients <span class="page-nav-count">3</span>
     </a>
     <a href="#insights" class="page-nav-link">
-      Références &amp; Insights <span class="page-nav-count">MIT · Gartner · Réglementation</span>
+      Références &amp; Analystes <span class="page-nav-count">MIT · Gartner · Réglementation</span>
     </a>
     <a href="#guides" class="page-nav-link">
       Guides pratiques <span class="page-nav-count">4</span>
@@ -913,7 +914,7 @@ img { max-width: 100%; display: block; }
             Garantie : Si le POV ne révèle pas de valeur mesurable, vous ne payez rien.
           </div>
           <div style="margin-top:24px;">
-            <a href="mailto:contact@semandata.com?subject=Demande POV GDE" class="btn btn-white btn-lg">Demander mon POV →</a>
+            <a href="mailto:contact@globaldataexcellence.com?subject=Demande POV GDE" class="btn btn-white btn-lg">Demander mon POV →</a>
           </div>
         </div>
         <div>
@@ -1163,7 +1164,7 @@ img { max-width: 100%; display: block; }
         </ul>
         <div class="guide-footer">
           <span class="guide-duration">Lecture 15 min</span>
-          <a href="mailto:contact@semandata.com?subject=Guide POV GDE" class="btn btn-primary">Demander ce guide →</a>
+          <a href="mailto:contact@globaldataexcellence.com?subject=Guide POV GDE" class="btn btn-primary">Demander ce guide →</a>
         </div>
       </div>
 
@@ -1182,7 +1183,7 @@ img { max-width: 100%; display: block; }
         </ul>
         <div class="guide-footer">
           <span class="guide-duration">Lecture 20 min</span>
-          <a href="mailto:contact@semandata.com?subject=Guide Conformité AI Act" class="btn btn-primary">Demander ce guide →</a>
+          <a href="mailto:contact@globaldataexcellence.com?subject=Guide Conformité AI Act" class="btn btn-primary">Demander ce guide →</a>
         </div>
       </div>
 
@@ -1201,7 +1202,7 @@ img { max-width: 100%; display: block; }
         </ul>
         <div class="guide-footer">
           <span class="guide-duration">Lecture 25 min</span>
-          <a href="mailto:contact@semandata.com?subject=Guide Déploiement Souverain DEMS" class="btn btn-secondary">Demander ce guide →</a>
+          <a href="mailto:contact@globaldataexcellence.com?subject=Guide Déploiement Souverain DEMS" class="btn btn-secondary">Demander ce guide →</a>
         </div>
       </div>
 
@@ -1220,7 +1221,7 @@ img { max-width: 100%; display: block; }
         </ul>
         <div class="guide-footer">
           <span class="guide-duration">Lecture 20 min</span>
-          <a href="mailto:contact@semandata.com?subject=Guide KVI GDE" class="btn btn-primary">Demander ce guide →</a>
+          <a href="mailto:contact@globaldataexcellence.com?subject=Guide KVI GDE" class="btn btn-primary">Demander ce guide →</a>
         </div>
       </div>
 
@@ -1829,7 +1830,7 @@ img { max-width: 100%; display: block; }
     <h2>Votre POV. 4 semaines. Résultat en euros.</h2>
     <p>Depuis 2007, GDE a construit l'unique plateforme qui opère au niveau méta-sémantique de l'entreprise. Les POV révèlent systématiquement entre 15 et 30&times; l'investissement en valeur identifiée ou risque évité.</p>
     <div class="cta-actions">
-      <a href="mailto:contact@semandata.com?subject=Demande POV GDE" class="btn btn-primary btn-lg">Demander un POV →</a>
+      <a href="mailto:contact@globaldataexcellence.com?subject=Demande POV GDE" class="btn btn-primary btn-lg">Demander un POV →</a>
       <a href="plateforme.html" class="btn btn-outline-white btn-lg">Voir la plateforme</a>
     </div>
   </div>
@@ -1859,7 +1860,7 @@ img { max-width: 100%; display: block; }
         <div class="footer-col-title">Ressources</div>
         <ul class="footer-links">
           <li><a href="ressources.html#temoignages">Témoignages</a></li>
-          <li><a href="ressources.html#insights">Références &amp; Insights</a></li>
+          <li><a href="ressources.html#insights">Références &amp; Analystes</a></li>
           <li><a href="ressources.html#guides">Guides pratiques</a></li>
           <li><a href="brief.html">Brief MIT CISR</a></li>
           <li><a href="blog.html">Blog</a></li>
@@ -1873,7 +1874,7 @@ img { max-width: 100%; display: block; }
           <li><a href="gotomarket.html">Partenaires</a></li>
       <li><a href="blog.html">Blog</a></li>
           <li><a href="solutions.html">Solutions</a></li>
-          <li><a href="mailto:contact@semandata.com">Contact</a></li>
+          <li><a href="mailto:contact@globaldataexcellence.com">Contact</a></li>
         </ul>
       </div>
     </div>

@@ -89,15 +89,16 @@ img { max-width: 100%; display: block; }
 .nav-dropdown > a::after { content: ' ▾'; font-size: 10px; opacity: 0.6; }
 .nav-mega-menu {
   display: none;
-  position: absolute; top: calc(100% + 8px); left: 50%;
+  position: absolute; top: calc(100% + 12px); left: 50%;
   transform: translateX(-50%);
-  background: white; border: 1px solid var(--c-grey200);
-  border-radius: var(--r-lg); box-shadow: var(--shadow-lg);
-  width: 660px; padding: 20px; z-index: 200;
+  background: #ffffff !important;
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.12), 0 2px 8px rgba(0,0,0,0.06);
+  width: 680px; padding: 24px; z-index: 500;
   grid-template-columns: 1fr 1fr 1fr; gap: 0;
 }
 .nav-mega-menu.open { display: grid; }
-.nav-dropdown:hover .nav-mega-menu { display: grid; }
 .mega-col { padding: 0 16px; }
 .mega-col + .mega-col { border-left: 1px solid var(--c-grey200); }
 .mega-col-title {
@@ -399,7 +400,7 @@ img { max-width: 100%; display: block; }
       <div class="nav-dropdown-menu">
         <div class="dropdown-label">Ressources</div>
         <a href="ressources.html#temoignages">Témoignages clients</a>
-        <a href="ressources.html#insights">Références &amp; Insights</a>
+        <a href="ressources.html#insights">Références &amp; Analystes</a>
         <a href="ressources.html#guides">Guides pratiques</a>
       </div>
     </li>
@@ -410,7 +411,7 @@ img { max-width: 100%; display: block; }
     </ul>
     <div class="nav-cta">
       <a href="ressources.html" class="btn btn-ghost" style="font-size:14px;padding:10px 18px;">Voir les résultats</a>
-      <a href="mailto:contact@semandata.com?subject=Demande de POV GDE" class="btn btn-primary" style="font-size:14px;padding:10px 20px;">Demander un POV →</a>
+      <a href="mailto:contact@globaldataexcellence.com?subject=Demande de POV GDE" class="btn btn-primary" style="font-size:14px;padding:10px 20px;">Demander un POV →</a>
     </div>
   </div>
 </nav>
@@ -500,7 +501,7 @@ img { max-width: 100%; display: block; }
     <p>Les analyses et articles de référence GDE sont disponibles dans la section Ressources. Ce blog sera alimenté par de nouveaux contenus inédits prochainement.</p>
     <div class="empty-cta-row">
       <a href="ressources.html#articles" class="btn btn-primary">Voir les analyses dans Ressources →</a>
-      <a href="mailto:contact@semandata.com?subject=Demande de POV GDE" class="btn btn-secondary">Demander un POV →</a>
+      <a href="mailto:contact@globaldataexcellence.com?subject=Demande de POV GDE" class="btn btn-secondary">Demander un POV →</a>
     </div>
   </div>
 </section>
@@ -600,8 +601,8 @@ img { max-width: 100%; display: block; }
         <ul class="footer-links">
           <li><a href="ressources.html">Toutes les ressources</a></li>
           <li><a href="ressources.html#temoignages">Témoignages clients</a></li>
-          <li><a href="ressources.html#insights">Références &amp; Insights</a></li>
-          <li><a href="mailto:contact@semandata.com">Contact</a></li>
+          <li><a href="ressources.html#insights">Références &amp; Analystes</a></li>
+          <li><a href="mailto:contact@globaldataexcellence.com">Contact</a></li>
         </ul>
       </div>
     </div>

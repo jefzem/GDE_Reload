@@ -1,0 +1,817 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mission & Vision — Semandata</title>
+  <meta name="description" content="Semandata construit la couche de gouvernance sémantique de l'entreprise intelligente. Notre mission : relier ce que l'entreprise est à ce que ses systèmes font.">
+  <style>
+/* ============================================================
+   SEMANDATA — Design System (inspiré Alan.fr)
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+
+:root {
+  /* Couleurs primaires */
+  --c-blue50:  #ebf5ff;
+  --c-blue100: #c7deff;
+  --c-blue500: #579dff;
+  --c-blue700: #0a70ff;
+  --c-blue900: #0057d1;
+
+  /* Neutres */
+  --c-heading:   #282830;
+  --c-paragraph: #464754;
+  --c-caption:   #656779;
+  --c-white:     #ffffff;
+  --c-cream:     #fffcf5;
+  --c-grey50:    #f5f8fe;
+  --c-grey100:   #ecf1fc;
+  --c-grey200:   #dbe2f4;
+  --c-grey300:   #c9d1e7;
+
+  /* Accents */
+  --c-indigo500: #5c59f3;
+  --c-teal500:   #2aa79c;
+  --c-yellow:    #fcff7e;
+  --c-green:     #22c55e;
+  --c-dark:      #14141c;
+  --c-hero-bg:   #ede9e1;
+
+  /* Border radius */
+  --r-sm:   8px;
+  --r-md:   12px;
+  --r-lg:   16px;
+  --r-xl:   24px;
+  --r-2xl:  32px;
+  --r-pill: 100px;
+
+  /* Ombres */
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.08), 0 1px 2px rgba(0,0,0,0.05);
+  --shadow-md: 0 4px 16px rgba(0,0,0,0.08), 0 2px 4px rgba(0,0,0,0.04);
+  --shadow-lg: 0 20px 60px rgba(0,0,0,0.10), 0 4px 16px rgba(0,0,0,0.06);
+}
+
+/* ── Reset ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Inter', Helvetica, Arial, sans-serif;
+  color: var(--c-paragraph);
+  background: var(--c-white);
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+a { text-decoration: none; color: inherit; }
+img { max-width: 100%; display: block; }
+
+/* ── Navigation ── */
+.nav {
+  position: sticky; top: 0; z-index: 100;
+  height: 72px;
+  background: rgba(255,255,255,0.96);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--c-grey200);
+  display: flex; align-items: center;
+}
+.nav-inner {
+  max-width: 1200px; margin: 0 auto; padding: 0 24px;
+  width: 100%;
+  display: flex; align-items: center; justify-content: space-between; gap: 32px;
+}
+.nav-logo {
+  display: flex; align-items: center; gap: 10px;
+  font-size: 20px; font-weight: 800; color: var(--c-heading);
+  letter-spacing: -0.5px; flex-shrink: 0;
+}
+.nav-logo .logo-mark {
+  width: 36px; height: 36px; border-radius: 10px;
+  background: var(--c-blue700);
+  display: flex; align-items: center; justify-content: center;
+  color: white; font-weight: 900; font-size: 16px; letter-spacing: -1px;
+}
+.nav-links {
+  display: flex; align-items: center; gap: 4px;
+  list-style: none; flex: 1; justify-content: center;
+}
+.nav-links a {
+  padding: 8px 14px; border-radius: var(--r-pill);
+  font-size: 14px; font-weight: 500; color: var(--c-paragraph);
+  transition: all 0.15s ease;
+  white-space: nowrap;
+}
+.nav-links a:hover { background: var(--c-grey100); color: var(--c-heading); }
+.nav-links a.active { background: var(--c-blue50); color: var(--c-blue700); font-weight: 600; }
+/* ── Dropdown Ressources ── */
+.nav-dropdown { position: relative; }
+.nav-dropdown > a::after {
+  content: ' ▾'; font-size: 10px; opacity: 0.6;
+}
+.nav-dropdown-menu {
+  display: none;
+  position: absolute; top: calc(100% + 8px); left: 50%;
+  transform: translateX(-50%);
+  background: white; border: 1px solid var(--c-grey200);
+  border-radius: var(--r-lg); box-shadow: var(--shadow-lg);
+  min-width: 210px; padding: 8px; z-index: 200;
+  white-space: nowrap;
+}
+.nav-dropdown:hover .nav-dropdown-menu { display: block; }
+.nav-dropdown-menu a {
+  display: block; padding: 10px 14px; border-radius: var(--r-md);
+  font-size: 14px; font-weight: 500; color: var(--c-paragraph);
+  transition: all 0.15s ease;
+}
+.nav-dropdown-menu a:hover { background: var(--c-blue50); color: var(--c-blue700); }
+.nav-dropdown-menu .dropdown-label {
+  font-size: 11px; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 1px; color: var(--c-caption); padding: 6px 14px 4px;
+}
+
+.nav-cta { display: flex; align-items: center; gap: 12px; flex-shrink: 0; }
+
+/* ── Boutons ── */
+.btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 12px 24px; border-radius: var(--r-pill);
+  font-size: 15px; font-weight: 600; border: none; cursor: pointer;
+  transition: all 0.15s ease; text-decoration: none; white-space: nowrap;
+}
+.btn-primary {
+  background: var(--c-blue700); color: white;
+}
+.btn-primary:hover {
+  background: var(--c-blue900);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 20px rgba(10,112,255,0.35);
+}
+.btn-secondary {
+  background: var(--c-grey100); color: var(--c-heading);
+}
+.btn-secondary:hover { background: var(--c-grey200); }
+.btn-ghost { background: transparent; color: var(--c-blue700); }
+.btn-ghost:hover { background: var(--c-blue50); }
+.btn-lg { padding: 16px 32px; font-size: 16px; }
+.btn-white { background: white; color: var(--c-blue700); }
+.btn-white:hover { background: var(--c-blue50); transform: translateY(-1px); box-shadow: 0 4px 20px rgba(0,0,0,0.15); }
+.btn-outline-white {
+  background: transparent; color: white;
+  border: 2px solid rgba(255,255,255,0.4);
+}
+.btn-outline-white:hover { background: rgba(255,255,255,0.1); border-color: white; }
+
+/* ── Layout ── */
+.container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+.section { padding: 96px 0; }
+.section-sm { padding: 64px 0; }
+.section-label {
+  display: inline-block;
+  font-size: 12px; font-weight: 700; letter-spacing: 1.5px;
+  text-transform: uppercase; color: var(--c-blue700);
+  margin-bottom: 16px;
+}
+.section-label-light { color: var(--c-blue500); }
+.section-title {
+  font-size: 42px; font-weight: 900; letter-spacing: -2px;
+  color: var(--c-heading); line-height: 1.1;
+  margin-bottom: 20px;
+}
+.section-title-white { color: white; }
+.section-subtitle {
+  font-size: 18px; color: var(--c-caption); line-height: 1.65;
+  max-width: 600px;
+}
+.section-subtitle-white { color: rgba(255,255,255,0.75); }
+.text-center { text-align: center; }
+.text-center .section-subtitle { margin: 0 auto; }
+
+/* ── Hero ── */
+.hero {
+  background: var(--c-hero-bg);
+  background-image: radial-gradient(circle at 1px 1px, rgba(10,112,255,0.07) 1px, transparent 0);
+  background-size: 32px 32px;
+  padding: 100px 0 80px;
+  overflow: hidden;
+}
+.hero-inner {
+  max-width: 1200px; margin: 0 auto; padding: 0 24px;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center;
+}
+.hero-badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: white; border: 1px solid var(--c-grey200);
+  border-radius: var(--r-pill); padding: 6px 14px;
+  font-size: 13px; font-weight: 600; color: var(--c-heading);
+  margin-bottom: 28px; box-shadow: var(--shadow-sm);
+}
+.hero-badge .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--c-green); }
+.hero h1 {
+  font-size: 56px; font-weight: 900; letter-spacing: -2.5px;
+  color: var(--c-heading); line-height: 1.05; margin-bottom: 24px;
+}
+.hero-sub {
+  font-size: 18px; color: var(--c-caption); line-height: 1.7; margin-bottom: 36px;
+}
+.hero-actions { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 40px; }
+.hero-stats {
+  display: flex; gap: 32px; padding-top: 32px;
+  border-top: 1px solid var(--c-grey200);
+}
+.hero-stat-val {
+  font-size: 28px; font-weight: 900; color: var(--c-heading);
+  letter-spacing: -1px; line-height: 1;
+}
+.hero-stat-label { font-size: 13px; color: var(--c-caption); margin-top: 4px; }
+
+/* ── Dashboard mockup ── */
+.dashboard-mockup {
+  background: white; border-radius: var(--r-xl); box-shadow: var(--shadow-lg);
+  overflow: hidden; border: 1px solid var(--c-grey200);
+  position: relative;
+}
+.mockup-topbar {
+  background: var(--c-grey50); padding: 12px 16px;
+  display: flex; align-items: center; gap: 10px;
+  border-bottom: 1px solid var(--c-grey200);
+}
+.mockup-dots { display: flex; gap: 6px; }
+.dot-red { width: 12px; height: 12px; border-radius: 50%; background: #ff5f57; }
+.dot-orange { width: 12px; height: 12px; border-radius: 50%; background: #febc2e; }
+.dot-green { width: 12px; height: 12px; border-radius: 50%; background: #28c840; }
+.mockup-title { font-size: 12px; font-weight: 600; color: var(--c-caption); flex: 1; text-align: center; }
+.mockup-body { padding: 20px; }
+.kpi-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 20px; }
+.kpi-card {
+  background: var(--c-grey50); border-radius: var(--r-md);
+  padding: 14px; border: 1px solid var(--c-grey200);
+}
+.kpi-label { font-size: 11px; font-weight: 600; color: var(--c-caption); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 6px; }
+.kpi-value { font-size: 22px; font-weight: 900; color: var(--c-heading); letter-spacing: -0.5px; }
+.kpi-trend { font-size: 12px; font-weight: 600; color: var(--c-green); margin-top: 2px; }
+.chart-area { background: var(--c-grey50); border-radius: var(--r-md); padding: 16px; border: 1px solid var(--c-grey200); }
+.chart-label { font-size: 11px; font-weight: 600; color: var(--c-caption); margin-bottom: 12px; }
+.bars { display: flex; align-items: flex-end; gap: 4px; height: 60px; }
+.bar { flex: 1; background: var(--c-blue700); border-radius: 3px 3px 0 0; opacity: 0.7; }
+.bar.active { opacity: 1; background: var(--c-blue700); }
+.bar.low { background: #ff6b6b; }
+
+/* ── Logos strip ── */
+.logos-strip {
+  padding: 32px 0;
+  border-top: 1px solid var(--c-grey200);
+  border-bottom: 1px solid var(--c-grey200);
+  background: var(--c-white);
+}
+.logos-label {
+  font-size: 12px; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 1.5px; color: var(--c-caption); text-align: center; margin-bottom: 24px;
+}
+.logos-row {
+  display: flex; align-items: center; justify-content: center;
+  gap: 48px; flex-wrap: wrap;
+}
+.logo-pill {
+  background: var(--c-grey50); border: 1px solid var(--c-grey200);
+  border-radius: var(--r-pill); padding: 10px 24px;
+  font-size: 13px; font-weight: 700; color: var(--c-grey300); letter-spacing: 0.5px;
+}
+
+/* ── Problem section ── */
+.section-dark {
+  background: var(--c-dark);
+  padding: 96px 0;
+}
+.stat-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 48px; }
+.stat-card {
+  background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);
+  border-radius: var(--r-xl); padding: 36px 28px;
+}
+.stat-number {
+  font-size: 52px; font-weight: 900; color: var(--c-yellow);
+  letter-spacing: -2px; line-height: 1; margin-bottom: 12px;
+}
+.stat-title { font-size: 16px; font-weight: 700; color: white; margin-bottom: 8px; }
+.stat-desc { font-size: 14px; color: rgba(255,255,255,0.6); line-height: 1.6; }
+.stat-source { font-size: 11px; color: rgba(255,255,255,0.35); margin-top: 12px; }
+
+/* ── Solution section ── */
+.solution-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; margin-top: 48px;
+}
+.ber-panel {
+  background: white; border-radius: var(--r-xl); padding: 28px;
+  box-shadow: var(--shadow-md); border: 1px solid var(--c-grey200);
+}
+.ber-panel-title { font-size: 13px; font-weight: 700; color: var(--c-caption); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 16px; }
+.ber-rule {
+  display: flex; align-items: flex-start; gap: 12px;
+  padding: 14px; background: var(--c-grey50); border-radius: var(--r-md);
+  border: 1px solid var(--c-grey200); margin-bottom: 10px;
+}
+.ber-icon { font-size: 20px; flex-shrink: 0; }
+.ber-rule-title { font-size: 13px; font-weight: 700; color: var(--c-heading); margin-bottom: 3px; }
+.ber-rule-text { font-size: 12px; color: var(--c-caption); line-height: 1.5; }
+.code-block {
+  background: #14141c; border-radius: var(--r-md); padding: 16px;
+  font-family: 'Courier New', monospace; font-size: 12px; margin-top: 16px;
+  border: 1px solid rgba(255,255,255,0.08);
+}
+.code-comment { color: #6b7280; }
+.code-get { color: #60a5fa; }
+.code-string { color: #86efac; }
+.code-key { color: #c084fc; }
+.code-val { color: #fde68a; }
+.code-bool { color: #34d399; }
+
+/* ── Modules grid ── */
+.modules-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 48px;
+}
+.module-card {
+  background: white; border: 1px solid var(--c-grey200);
+  border-radius: var(--r-xl); padding: 28px;
+  transition: all 0.2s ease; box-shadow: var(--shadow-sm);
+}
+.module-card:hover { box-shadow: var(--shadow-lg); transform: translateY(-2px); }
+.module-icon {
+  width: 48px; height: 48px; border-radius: var(--r-md);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 24px; margin-bottom: 16px;
+}
+.module-icon.blue { background: var(--c-blue50); }
+.module-icon.indigo { background: #ede9ff; }
+.module-icon.green { background: #dcfce7; }
+.module-icon.teal { background: #ccfbf1; }
+.module-icon.orange { background: #fff7ed; }
+.module-icon.violet { background: #faf5ff; }
+.module-name { font-size: 17px; font-weight: 800; color: var(--c-heading); margin-bottom: 8px; letter-spacing: -0.3px; }
+.module-desc { font-size: 14px; color: var(--c-caption); line-height: 1.6; }
+.module-tag {
+  display: inline-block; margin-top: 12px;
+  font-size: 11px; font-weight: 700; padding: 3px 10px;
+  border-radius: var(--r-pill); background: var(--c-blue50); color: var(--c-blue700);
+  letter-spacing: 0.3px;
+}
+
+/* ── ROI section ── */
+.section-blue { background: var(--c-blue700); padding: 96px 0; }
+.roi-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 48px; }
+.roi-card {
+  background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.2);
+  border-radius: var(--r-xl); padding: 36px 28px; text-align: center;
+}
+.roi-number {
+  font-size: 48px; font-weight: 900; color: var(--c-yellow);
+  letter-spacing: -2px; line-height: 1; margin-bottom: 12px;
+}
+.roi-title { font-size: 15px; font-weight: 700; color: white; margin-bottom: 8px; }
+.roi-desc { font-size: 13px; color: rgba(255,255,255,0.65); line-height: 1.6; }
+
+/* ── Feature sections ── */
+.feature-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center;
+}
+.feature-list { list-style: none; margin-top: 24px; }
+.feature-list li {
+  display: flex; align-items: flex-start; gap: 12px;
+  padding: 12px 0; border-bottom: 1px solid var(--c-grey200);
+  font-size: 15px; color: var(--c-paragraph);
+}
+.feature-list li:last-child { border-bottom: none; }
+.feature-check { color: var(--c-blue700); font-size: 18px; flex-shrink: 0; margin-top: 2px; }
+.conformity-panel {
+  background: var(--c-grey50); border-radius: var(--r-xl); padding: 28px;
+  border: 1px solid var(--c-grey200);
+}
+.conformity-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+.conformity-score { font-size: 42px; font-weight: 900; color: var(--c-heading); letter-spacing: -2px; }
+.conformity-label { font-size: 12px; font-weight: 600; color: var(--c-caption); }
+.conf-bar-row { margin-bottom: 12px; }
+.conf-bar-label { display: flex; justify-content: space-between; font-size: 13px; margin-bottom: 6px; }
+.conf-bar-label span:first-child { font-weight: 600; color: var(--c-heading); }
+.conf-bar-label span:last-child { font-weight: 700; color: var(--c-blue700); }
+.conf-bar-track { height: 8px; background: var(--c-grey200); border-radius: 4px; overflow: hidden; }
+.conf-bar-fill { height: 100%; border-radius: 4px; background: var(--c-blue700); }
+.conf-bar-fill.good { background: var(--c-green); }
+.conf-bar-fill.warn { background: #f59e0b; }
+.kvi-highlight {
+  margin-top: 20px; padding: 16px;
+  background: white; border-radius: var(--r-md);
+  border: 1px solid var(--c-grey200); display: flex; align-items: center; gap: 14px;
+}
+.kvi-icon { font-size: 28px; }
+.kvi-val { font-size: 24px; font-weight: 900; color: var(--c-green); letter-spacing: -1px; }
+.kvi-lbl { font-size: 12px; color: var(--c-caption); }
+
+/* ── Integrations ── */
+.integration-list { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 24px; }
+.integration-item {
+  display: flex; align-items: center; gap: 12px;
+  padding: 14px 16px; background: white;
+  border: 1px solid var(--c-grey200); border-radius: var(--r-md);
+  font-size: 14px; font-weight: 600; color: var(--c-heading);
+  box-shadow: var(--shadow-sm);
+}
+.integration-icon { font-size: 22px; }
+
+/* ── Testimonials ── */
+.testimonials-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 48px; }
+.testimonial-card {
+  background: white; border: 1px solid var(--c-grey200);
+  border-radius: var(--r-xl); padding: 32px;
+  box-shadow: var(--shadow-md); display: flex; flex-direction: column;
+}
+.testimonial-quote {
+  font-size: 15px; color: var(--c-paragraph); line-height: 1.7;
+  font-style: italic; flex: 1; margin-bottom: 24px;
+}
+.testimonial-quote::before { content: '"'; font-size: 48px; color: var(--c-blue700); line-height: 0.5; display: block; margin-bottom: 16px; font-style: normal; }
+.testimonial-author { border-top: 1px solid var(--c-grey200); padding-top: 16px; }
+.testimonial-name { font-size: 14px; font-weight: 700; color: var(--c-heading); }
+.testimonial-role { font-size: 13px; color: var(--c-caption); }
+.testimonial-metric {
+  display: inline-block; margin-top: 10px;
+  background: var(--c-blue50); color: var(--c-blue700);
+  font-size: 13px; font-weight: 800; padding: 4px 12px;
+  border-radius: var(--r-pill);
+}
+
+/* ── Why Now ── */
+.why-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 48px; }
+.why-card {
+  border-radius: var(--r-xl); padding: 32px;
+  border: 1px solid var(--c-grey200); background: white;
+  box-shadow: var(--shadow-sm);
+}
+.why-card.highlight { background: var(--c-blue700); border-color: var(--c-blue700); }
+.why-number { font-size: 40px; font-weight: 900; letter-spacing: -1px; color: var(--c-grey200); margin-bottom: 16px; }
+.why-card.highlight .why-number { color: rgba(255,255,255,0.3); }
+.why-title { font-size: 20px; font-weight: 800; color: var(--c-heading); margin-bottom: 10px; letter-spacing: -0.5px; }
+.why-card.highlight .why-title { color: white; }
+.why-text { font-size: 14px; color: var(--c-caption); line-height: 1.65; }
+.why-card.highlight .why-text { color: rgba(255,255,255,0.75); }
+.why-badge {
+  display: inline-block; margin-top: 14px;
+  background: var(--c-yellow); color: var(--c-dark);
+  font-size: 11px; font-weight: 800; padding: 4px 12px;
+  border-radius: var(--r-pill); letter-spacing: 0.3px;
+}
+
+/* ── Editions/Versions ── */
+.editions-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 48px; }
+.edition-card {
+  background: white; border: 1px solid var(--c-grey200);
+  border-radius: var(--r-xl); padding: 32px;
+  display: flex; flex-direction: column;
+  box-shadow: var(--shadow-sm); position: relative; overflow: hidden;
+}
+.edition-card.featured {
+  border-color: var(--c-blue700);
+  box-shadow: 0 0 0 2px var(--c-blue700), var(--shadow-lg);
+}
+.edition-badge {
+  position: absolute; top: 16px; right: 16px;
+  background: var(--c-blue700); color: white;
+  font-size: 11px; font-weight: 700; padding: 3px 10px;
+  border-radius: var(--r-pill); letter-spacing: 0.3px;
+}
+.edition-name { font-size: 22px; font-weight: 900; color: var(--c-heading); margin-bottom: 8px; letter-spacing: -0.5px; }
+.edition-tagline { font-size: 14px; color: var(--c-caption); margin-bottom: 24px; line-height: 1.6; }
+.edition-features { list-style: none; flex: 1; }
+.edition-features li {
+  display: flex; align-items: flex-start; gap: 10px;
+  font-size: 14px; color: var(--c-paragraph); padding: 8px 0;
+  border-bottom: 1px solid var(--c-grey100);
+}
+.edition-features li:last-child { border-bottom: none; }
+.ef-check { color: var(--c-blue700); font-weight: 700; flex-shrink: 0; }
+.edition-cta { margin-top: 24px; }
+.edition-cta .btn { width: 100%; justify-content: center; }
+
+/* ── CTA Banner ── */
+.cta-banner { background: var(--c-cream); padding: 96px 0; text-align: center; }
+.cta-banner h2 { font-size: 46px; font-weight: 900; color: var(--c-heading); letter-spacing: -2px; margin-bottom: 16px; }
+.cta-banner p { font-size: 18px; color: var(--c-caption); max-width: 560px; margin: 0 auto 36px; }
+.cta-actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+
+/* ── Footer ── */
+.footer {
+  background: var(--c-dark); padding: 64px 0 32px;
+}
+.footer-grid {
+  display: grid; grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
+  gap: 40px; padding-bottom: 48px;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+.footer-brand { font-size: 20px; font-weight: 800; color: white; margin-bottom: 12px; }
+.footer-tagline { font-size: 13px; color: rgba(255,255,255,0.5); line-height: 1.65; }
+.footer-col-title { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: rgba(255,255,255,0.4); margin-bottom: 16px; }
+.footer-links { list-style: none; }
+.footer-links li { margin-bottom: 10px; }
+.footer-links a { font-size: 14px; color: rgba(255,255,255,0.6); transition: color 0.15s; }
+.footer-links a:hover { color: white; }
+.footer-bottom {
+  padding-top: 28px;
+  display: flex; justify-content: space-between; align-items: flex-start;
+  gap: 16px; flex-wrap: wrap;
+}
+.footer-copy { font-size: 12px; color: rgba(255,255,255,0.3); line-height: 1.8; }
+.footer-ip { font-size: 11px; color: rgba(255,255,255,0.2); margin-top: 6px; }
+
+/* ── Page hero (sous-pages) ── */
+.page-hero {
+  background: var(--c-hero-bg);
+  background-image: radial-gradient(circle at 1px 1px, rgba(10,112,255,0.07) 1px, transparent 0);
+  background-size: 32px 32px;
+  padding: 80px 0;
+}
+.page-hero .section-label { margin-bottom: 12px; }
+.page-hero h1 { font-size: 48px; font-weight: 900; letter-spacing: -2px; color: var(--c-heading); line-height: 1.05; margin-bottom: 20px; }
+.page-hero p { font-size: 18px; color: var(--c-caption); max-width: 640px; line-height: 1.7; }
+
+/* ── Team cards ── */
+.team-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 48px; }
+.team-card {
+  background: white; border: 1px solid var(--c-grey200);
+  border-radius: var(--r-xl); padding: 28px;
+  box-shadow: var(--shadow-sm);
+}
+.team-avatar {
+  width: 60px; height: 60px; border-radius: 50%;
+  background: var(--c-blue700);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 22px; font-weight: 900; color: white;
+  margin-bottom: 16px; letter-spacing: -1px;
+}
+.team-name { font-size: 17px; font-weight: 800; color: var(--c-heading); margin-bottom: 4px; }
+.team-role { font-size: 13px; font-weight: 600; color: var(--c-blue700); margin-bottom: 10px; }
+.team-bio { font-size: 13px; color: var(--c-caption); line-height: 1.6; }
+
+/* ── Timeline ── */
+.timeline { position: relative; margin-top: 48px; }
+.timeline::before {
+  content: ''; position: absolute; left: 120px; top: 0; bottom: 0;
+  width: 2px; background: var(--c-grey200);
+}
+.timeline-item { display: flex; gap: 32px; padding-bottom: 40px; position: relative; }
+.timeline-year { width: 88px; flex-shrink: 0; text-align: right; font-size: 13px; font-weight: 700; color: var(--c-blue700); padding-top: 2px; }
+.timeline-dot {
+  width: 20px; height: 20px; border-radius: 50%;
+  background: var(--c-blue700); border: 3px solid white;
+  box-shadow: 0 0 0 2px var(--c-blue700);
+  flex-shrink: 0; margin-top: 1px; margin-left: -10px; position: relative; z-index: 1;
+  left: 10px;
+}
+.timeline-content { padding-top: 0; }
+.timeline-title { font-size: 16px; font-weight: 700; color: var(--c-heading); margin-bottom: 4px; }
+.timeline-text { font-size: 14px; color: var(--c-caption); line-height: 1.6; }
+
+/* ── Manifesto ── */
+.manifesto-block {
+  border-left: 4px solid var(--c-blue700);
+  padding: 20px 24px; margin-bottom: 24px;
+  background: var(--c-blue50); border-radius: 0 var(--r-md) var(--r-md) 0;
+}
+.manifesto-block p { font-size: 16px; color: var(--c-heading); line-height: 1.7; font-weight: 500; }
+
+/* ── GTM ── */
+.gtm-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 48px; }
+.gtm-card {
+  background: white; border: 1px solid var(--c-grey200);
+  border-radius: var(--r-xl); padding: 28px; box-shadow: var(--shadow-sm);
+}
+.gtm-icon { font-size: 32px; margin-bottom: 16px; }
+.gtm-title { font-size: 18px; font-weight: 800; color: var(--c-heading); margin-bottom: 10px; }
+.gtm-text { font-size: 14px; color: var(--c-caption); line-height: 1.65; }
+.channel-list { list-style: none; margin-top: 16px; }
+.channel-list li {
+  display: flex; align-items: center; gap: 10px;
+  font-size: 14px; color: var(--c-paragraph); padding: 8px 0;
+  border-bottom: 1px solid var(--c-grey100);
+}
+.channel-list li::before { content: '→'; color: var(--c-blue700); font-weight: 700; }
+
+/* ── Segment cards ── */
+.segments-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 40px; }
+.segment-card {
+  background: white; border: 1px solid var(--c-grey200);
+  border-radius: var(--r-xl); padding: 24px; text-align: center; box-shadow: var(--shadow-sm);
+}
+.segment-icon { font-size: 36px; margin-bottom: 12px; }
+.segment-name { font-size: 15px; font-weight: 800; color: var(--c-heading); margin-bottom: 6px; }
+.segment-desc { font-size: 13px; color: var(--c-caption); line-height: 1.5; }
+.segment-reg { font-size: 11px; font-weight: 700; color: var(--c-blue700); margin-top: 10px; }
+
+/* ── POV process ── */
+.pov-steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 40px; }
+.pov-step {
+  text-align: center; padding: 28px 20px;
+  background: white; border: 1px solid var(--c-grey200);
+  border-radius: var(--r-xl); position: relative; box-shadow: var(--shadow-sm);
+}
+.pov-num {
+  width: 40px; height: 40px; border-radius: 50%;
+  background: var(--c-blue700); color: white;
+  font-size: 16px; font-weight: 900;
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 16px;
+}
+.pov-week { font-size: 11px; font-weight: 700; color: var(--c-blue700); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; }
+.pov-title { font-size: 15px; font-weight: 700; color: var(--c-heading); margin-bottom: 8px; }
+.pov-text { font-size: 13px; color: var(--c-caption); line-height: 1.6; }
+
+/* ── Responsive ── */
+@media (max-width: 1024px) {
+  .hero-inner { grid-template-columns: 1fr; }
+  .dashboard-mockup { max-width: 480px; }
+  .stat-cards, .roi-grid { grid-template-columns: 1fr 1fr; }
+  .modules-grid { grid-template-columns: 1fr 1fr; }
+  .testimonials-grid { grid-template-columns: 1fr 1fr; }
+  .footer-grid { grid-template-columns: 1fr 1fr 1fr; }
+  .segments-grid { grid-template-columns: 1fr 1fr; }
+  .pov-steps { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 768px) {
+  .nav-links { display: none; }
+  .section-title { font-size: 32px; }
+  .hero h1 { font-size: 38px; }
+  .stat-cards, .modules-grid, .roi-grid, .testimonials-grid, .editions-grid, .why-grid, .solution-grid, .feature-grid, .gtm-grid { grid-template-columns: 1fr; }
+  .team-grid { grid-template-columns: 1fr 1fr; }
+  .footer-grid { grid-template-columns: 1fr 1fr; }
+  .timeline::before { left: 0; }
+  .timeline-year { display: none; }
+  .segments-grid { grid-template-columns: 1fr 1fr; }
+  .pov-steps { grid-template-columns: 1fr 1fr; }
+}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">
+      <div class="logo-mark">Sm</div>
+      Semandata
+    </a>
+    <ul class="nav-links">
+      <li><a href="plateforme.html">Plateforme</a></li>
+      <li><a href="solutions.html">Solutions</a></li>
+      <li class="nav-dropdown">
+      <a href="ressources.html">Ressources</a>
+      <div class="nav-dropdown-menu">
+        <div class="dropdown-label">Ressources</div>
+        <a href="ressources.html#temoignages">Témoignages clients</a>
+        <a href="ressources.html#insights">Références &amp; Insights</a>
+        <a href="ressources.html#guides">Guides pratiques</a>
+        <a href="ressources.html#articles">Articles</a>
+      </div>
+    </li>
+      <li><a href="entreprise.html">Entreprise</a></li>
+      <li><a href="mission.html" class="active">Mission</a></li>
+      <li><a href="gotomarket.html">Partenaires</a></li>
+      <li><a href="blog.html">Blog</a></li>
+    </ul>
+    <div class="nav-cta">
+      <a href="ressources.html" class="btn btn-ghost" style="font-size:14px;padding:10px 18px;">Voir les résultats</a>
+      <a href="mailto:contact@semandata.com?subject=Demande de POV Semandata" class="btn btn-primary" style="font-size:14px;padding:10px 20px;">Demander un POV →</a>
+    </div>
+  </div>
+</nav>
+
+<!-- Hero -->
+<section style="background:var(--c-dark);padding:100px 0 80px;">
+  <div class="container">
+    <span class="section-label section-label-light">Notre raison d'être</span>
+    <h1 style="font-size:56px;font-weight:900;letter-spacing:-2.5px;color:white;line-height:1.05;margin-bottom:28px;max-width:800px;">Semandata construit la couche de gouvernance sémantique de l'entreprise intelligente.</h1>
+    <p style="font-size:20px;color:rgba(255,255,255,0.65);line-height:1.7;max-width:680px;margin-bottom:40px;">Notre mission : relier ce que l'entreprise est à ce que ses systèmes font. Nous encodons les règles métier. Nous mesurons les écarts. Nous en exprimons la valeur en euros. Pour que la gouvernance devienne une décision de direction — pas un chantier IT.</p>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px;max-width:860px;">
+      <div style="background:rgba(252,255,126,0.12);border:1px solid rgba(252,255,126,0.3);border-radius:var(--r-md);padding:16px;text-align:center;">
+        <div style="font-size:18px;font-weight:900;color:var(--c-yellow);">Méta sémantique</div>
+        <div style="font-size:12px;color:rgba(255,255,255,0.6);margin-top:4px;">Au-dessus des systèmes</div>
+      </div>
+      <div style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:var(--r-md);padding:16px;text-align:center;">
+        <div style="font-size:18px;font-weight:900;color:var(--c-yellow);">Déterministe</div>
+        <div style="font-size:12px;color:rgba(255,255,255,0.5);margin-top:4px;">Pas de probabilité</div>
+      </div>
+      <div style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:var(--r-md);padding:16px;text-align:center;">
+        <div style="font-size:18px;font-weight:900;color:var(--c-yellow);">Souverain</div>
+        <div style="font-size:12px;color:rgba(255,255,255,0.5);margin-top:4px;">Vos données, chez vous</div>
+      </div>
+      <div style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:var(--r-md);padding:16px;text-align:center;">
+        <div style="font-size:18px;font-weight:900;color:var(--c-yellow);">Agentique</div>
+        <div style="font-size:12px;color:rgba(255,255,255,0.5);margin-top:4px;">API REST native</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Responsabilité personnelle — section clé -->
+<section class="section" style="background:var(--c-grey50);">
+  <div class="container" style="max-width:900px;">
+    <div class="text-center">
+      <span class="section-label">Le contexte</span>
+      <h2 class="section-title">Le monde réglementaire s'accélère.<br>Votre responsabilité personnelle, elle, ne pardonne pas.</h2>
+      <p class="section-subtitle">RGPD. AI Act. DORA. NIS2. CSRD. BCBS 239. Les règles se multiplient, changent, s'empilent. Derrière chaque manquement, il y a un nom sur un document. Le vôtre.</p>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:48px;">
+      <div style="background:white;border:1px solid var(--c-grey200);border-radius:var(--r-xl);padding:24px;border-top:3px solid #ef4444;">
+        <div style="font-size:28px;font-weight:900;color:#ef4444;letter-spacing:-1px;">1,15 Md€</div>
+        <div style="font-size:13px;font-weight:700;color:var(--c-heading);margin:6px 0;">d'amendes RGPD</div>
+        <div style="font-size:12px;color:var(--c-caption);line-height:1.5;">prononcées en Europe en 2025, sur 330 décisions. Parmi elles : Free Mobile (27M€, jan. 2026), Amazon (32M€, déc. 2024), France Travail (5M€, jan. 2026).</div>
+        <div style="font-size:11px;color:var(--c-caption);margin-top:8px;font-style:italic;">Source : Archimag / CNIL, 2026</div>
+      </div>
+      <div style="background:white;border:1px solid var(--c-grey200);border-radius:var(--r-xl);padding:24px;border-top:3px solid #f59e0b;">
+        <div style="font-size:28px;font-weight:900;color:#f59e0b;letter-spacing:-1px;">35 M€ ou 7%</div>
+        <div style="font-size:13px;font-weight:700;color:var(--c-heading);margin:6px 0;">AI Act — plafond d'amende</div>
+        <div style="font-size:12px;color:var(--c-caption);line-height:1.5;">du chiffre d'affaires mondial pour les violations les plus graves. Applicable dès 2026. Responsabilité personnelle des dirigeants si manquement délibéré.</div>
+        <div style="font-size:11px;color:var(--c-caption);margin-top:8px;font-style:italic;">Source : Règlement UE 2024/1689 — AI Act</div>
+      </div>
+      <div style="background:white;border:1px solid var(--c-grey200);border-radius:var(--r-xl);padding:24px;border-top:3px solid var(--c-blue700);">
+        <div style="font-size:28px;font-weight:900;color:var(--c-blue700);letter-spacing:-1px;">Peine pénale</div>
+        <div style="font-size:13px;font-weight:700;color:var(--c-heading);margin:6px 0;">RGPD + Code pénal</div>
+        <div style="font-size:12px;color:var(--c-caption);line-height:1.5;">Emprisonnement possible pour les dirigeants ayant délibérément ignoré les risques. La CNIL et les juridictions distinguent la négligence de la faute intentionnelle.</div>
+        <div style="font-size:11px;color:var(--c-caption);margin-top:8px;font-style:italic;">Source : RGPD Art. 83 + Loi Informatique et Libertés</div>
+      </div>
+    </div>
+    <div style="margin-top:32px;background:var(--c-dark);border-radius:var(--r-xl);padding:32px;">
+      <div style="font-size:13px;font-weight:700;color:rgba(255,255,255,0.4);text-transform:uppercase;letter-spacing:1px;margin-bottom:16px;">La réalité du terrain — 2024/2026</div>
+      <p style="font-size:16px;color:rgba(255,255,255,0.8);line-height:1.75;margin-bottom:16px;">Les règles ne se contentent plus de s'accumuler — elles changent. L'AI Act redéfinit ce qu'est un système d'IA à haut risque. DORA impose aux banques des registres de tiers numériques. La CSRD oblige à tracer l'empreinte carbone données incluses. NIS2 étend la cybersécurité à des milliers d'entités nouvelles. <strong style="color:white;">Un directeur de la conformité d'une banque européenne gère aujourd'hui plus de 400 textes réglementaires applicables simultanément.</strong> Ce nombre double tous les cinq ans.</p>
+      <p style="font-size:16px;color:rgba(255,255,255,0.8);line-height:1.75;">La première performance d'une entreprise n'est pas de croître. C'est de <strong style="color:var(--c-yellow);">ne commettre aucune erreur sur aucune contrainte</strong>. Parce que chaque pénalité évitée est une performance réelle, mesurable, défendable devant un conseil d'administration — ou devant un tribunal.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Pour qui nous travaillons -->
+<section class="section" style="background:var(--c-dark);">
+  <div class="container" style="max-width:1000px;">
+    <div class="text-center">
+      <span class="section-label section-label-light">Notre cible</span>
+      <h2 class="section-title section-title-white">Nous ne travaillons pas pour les informaticiens. Nous travaillons pour ceux qui risquent quelque chose si ça déraille.</h2>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:32px;margin-top:48px;">
+      <!-- Nos alliés -->
+      <div>
+        <div style="font-size:12px;font-weight:700;color:var(--c-green);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:20px;">✓ Nos alliés — Les personnes à responsabilité engagée</div>
+        <div style="display:flex;flex-direction:column;gap:12px;">
+          <div style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:var(--r-md);padding:16px 20px;">
+            <div style="font-size:14px;font-weight:700;color:white;margin-bottom:4px;">CEO / Président</div>
+            <div style="font-size:13px;color:rgba(255,255,255,0.6);">Responsabilité personnelle sous RGPD et AI Act. En cas de manquement délibéré, le nom du dirigeant peut apparaître dans la décision de sanction.</div>
+          </div>
+          <div style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:var(--r-md);padding:16px 20px;">
+            <div style="font-size:14px;font-weight:700;color:white;margin-bottom:4px;">Directeur Conformité / CCO</div>
+            <div style="font-size:13px;color:rgba(255,255,255,0.6);">Mandat explicite de zéro défaut. Première ligne de responsabilité en cas de sanction réglementaire. DORA lui impose désormais une traçabilité complète des systèmes critiques.</div>
+          </div>
+          <div style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:var(--r-md);padding:16px 20px;">
+            <div style="font-size:14px;font-weight:700;color:white;margin-bottom:4px;">CFO / Directeur Financier</div>
+            <div style="font-size:13px;color:rgba(255,255,255,0.6);">Les amendes s'imputent sur son budget. BCBS 239 engage sa signature sur la qualité des données de risque. Un chiffre erroné dans un reporting réglementaire peut déclencher un audit complet.</div>
+          </div>
+          <div style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:var(--r-md);padding:16px 20px;">
+            <div style="font-size:14px;font-weight:700;color:white;margin-bottom:4px;">DPO / RSSI / COO</div>
+            <div style="font-size:13px;color:rgba(255,255,255,0.6);">Obligations légales de signalement, de traçabilité, de résilience. Leur responsabilité est engagée si un incident survient sans que les mesures organisationnelles requises aient été mises en place.</div>
+          </div>
+          <div style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:var(--r-md);padding:16px 20px;">
+            <div style="font-size:14px;font-weight:700;color:white;margin-bottom:4px;">Directeur Qualité / Directeur des Risques</div>
+            <div style="font-size:13px;color:rgba(255,255,255,0.6);">Dans l'industrie, la pharma, l'alimentaire — une non-conformité non détectée peut entraîner un rappel de produit, une fermeture administrative, une mise en examen personnelle.</div>
+          </div>
+        </div>
+      </div>
+      <!-- Les freins -->
+      <div>
+        <div style="font-size:12px;font-weight:700;color:#ef4444;text-transform:uppercase;letter-spacing:1.5px;margin-bottom:20px;">✗ Les freins — Ceux qui déploient sans risque personnel</div>
+        <div style="background:rgba(239,68,68,0.08);border:1px solid rgba(239,68,68,0.2);border-radius:var(--r-xl);padding:28px;">
+          <p style="font-size:15px;color:rgba(255,255,255,0.75);line-height:1.7;margin-bottom:20px;">Les équipes IT — DSI, architectes de données, data engineers, chefs de projet data — déploient des données et des applications. Ils optimisent la vitesse, la scalabilité, le time-to-market. <strong style="color:white;">Ils ne risquent rien personnellement si une règle réglementaire n'est pas respectée.</strong></p>
+          <p style="font-size:15px;color:rgba(255,255,255,0.75);line-height:1.7;margin-bottom:20px;">Pour eux, la gouvernance est une friction. Une couche supplémentaire. Un frein au déploiement. Ils peuvent percevoir DEMS® — et toute solution de gouvernance rigoureuse — comme un <em>empêcheur de tourner en rond</em>.</p>
+          <p style="font-size:15px;color:rgba(255,255,255,0.75);line-height:1.7;"><strong style="color:white;">Ce sont de bons professionnels, pas nos alliés.</strong> Leur logique est rationnelle : pourquoi contraindre ce qu'on peut déployer librement ? La réponse n'est pas technique. Elle est dans la question du risque — et du nom qui figure en bas du document.</p>
+          <div style="margin-top:20px;padding-top:20px;border-top:1px solid rgba(239,68,68,0.2);font-size:13px;color:rgba(255,255,255,0.5);font-style:italic;">Notre stratégie : contourner le DSI. Entrer par le Comex. Parler en euros de risque, pas en lignes de code.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Le problème fondamental -->
+<section class="section">
+  <div class="container" style="max-width:800px;">
+    <span class="section-label">Le pourquoi</span>
+    <h2 class="section-title">Les entreprises ont laissé leurs outils définir leur identité à leur place.</h2>
+    <p style="font-size:18px;color:var(--c-caption);line-height:1.8;margin-bottom:24px;">SAP a structuré leur modèle de données. Salesforce a défini leur vision du client. Google a formaté leur lecture du marché. En trente ans de transformation numérique, les SI ont absorbé des systèmes, des couches, des flux — sans jamais répondre à une question simple : <strong style="color:var(--c-heading);">qui sommes-nous ? Quelles règles ne pouvons-nous pas transgresser ?</strong></p>
+    <div class="manifesto-block">
+      <p>Posez la question à un Codir. Chaque dirigeant donne une réponse différente sur ce qu'est un client, un produit, une commande. Cette divergence n'est pas anodine. Elle est le symptôme d'une fracture structurelle entre la stratégie et les systèmes censés l'exécuter.</p>
+    </div>
+    <p style="font-size:17px;color:var(--c-caption);line-height:1.8;margin-bottom:24px;">L'IA agentique radicalise cette fracture. Des agents autonomes prennent désormais des décisions à la place des collaborateurs — sur les contrats, les risques, les clients, les fournisseurs, les prix. En temps réel, à grande échelle, sans fatigue et sans état d'âme.</p>
+    <div style="background:var(--c-dark);border-radius:var(--r-xl);padding:32px;margin:32px 0;">
+      <div style="font-size:13px;font-weight:700;color:rgba(255,255,255,0.4);text-transform:uppercase;letter-spacing:1px;margin-bottom:16px;">Le précédent — Knight Capital, 1er août 2012</div>
+      <p style="font-size:16px;color:rgba(255,255,255,0.75);line-height:1.7;">Un algorithme de trading mal configuré. 45 minutes. 4 millions d'ordres sur 154 titres. <span style="color:var(--c-yellow);font-weight:700;">440 millions de dollars</span> de perte. L'entreprise a disparu. Cause : un agent autonome sans règles explicites, sans gouvernance, sans traçabilité. Ce qui était une exception en 2012 est devenu la norme opérationnelle de millions d'entreprises en 2026.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Nos convictions -->
+<section class="section" style="background:var(--c-cream);">
+  <div class="container" style="max-width:900px;">
+    <div class="text-center">
+      <span class="section-label">Notre manifeste</span>
+      <h2 class="section-title">Ce que nous croyons.</h2>
+    </div
